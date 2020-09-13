@@ -50,7 +50,7 @@ public class TelaGerenciadorCantina extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Ubuntu", 0, 36)); // NOI18N
         jLabel1.setForeground(java.awt.Color.blue);
-        jLabel1.setText("Bem-vindx!");
+        jLabel1.setText("Bem-vindo!");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
