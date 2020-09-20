@@ -5,6 +5,7 @@
  */
 package menu.analise_sist_elab_vinho_e_derivados;
 
+import javax.swing.JOptionPane;
 import menu.analise_sist_elab_vinho_e_derivados.elaboracao.fermentacao.TelaListagemFermentacao;
 import menu.analise_sist_elab_vinho_e_derivados.elaboracao.recepcao.TelaListagemFornecedor;
 
@@ -61,14 +62,31 @@ public class TelaAnaliseSistElabVinhoEDerivados extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(1024, 760));
 
         jToggleButton4.setText("Tarefa");
+        jToggleButton4.setEnabled(false);
+        jToggleButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton4ActionPerformed(evt);
+            }
+        });
 
         jToggleButton5.setText("Calculadora");
+        jToggleButton5.setEnabled(false);
+        jToggleButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton5ActionPerformed(evt);
+            }
+        });
 
         jMenu8.setText("Elaboração");
 
         jMenu11.setText("Recepção");
 
         jMenuItem2.setText("ID Geral de Uva");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         jMenu11.add(jMenuItem2);
 
         jMenuItem4.setText("Fornecedor");
@@ -92,49 +110,118 @@ public class TelaAnaliseSistElabVinhoEDerivados extends javax.swing.JFrame {
         jMenuBar1.add(jMenu8);
 
         jMenu9.setText("Conservação");
+        jMenu9.setEnabled(false);
 
         jMenu13.setText("Tratamento");
 
         jMenuItem10.setText("Clarificação");
+        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem10ActionPerformed(evt);
+            }
+        });
         jMenu13.add(jMenuItem10);
 
         jMenuItem11.setText("Estabilização");
+        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem11ActionPerformed(evt);
+            }
+        });
         jMenu13.add(jMenuItem11);
 
         jMenu9.add(jMenu13);
 
         jMenuItem3.setText("Cortes");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         jMenu9.add(jMenuItem3);
 
         jMenuItem12.setText("Refrigeração");
+        jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem12ActionPerformed(evt);
+            }
+        });
         jMenu9.add(jMenuItem12);
 
         jMenuBar1.add(jMenu9);
 
         jMenu10.setText("Expedição");
+        jMenu10.setEnabled(false);
+        jMenu10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu10ActionPerformed(evt);
+            }
+        });
         jMenuBar1.add(jMenu10);
 
         jMenu1.setText("Cadastros");
+        jMenu1.setEnabled(false);
+        jMenu1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu1ActionPerformed(evt);
+            }
+        });
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Relatórios");
+        jMenu2.setEnabled(false);
+        jMenu2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu2ActionPerformed(evt);
+            }
+        });
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("Listas");
+        jMenu3.setEnabled(false);
+        jMenu3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu3ActionPerformed(evt);
+            }
+        });
         jMenuBar1.add(jMenu3);
 
         jMenu4.setText("Arquivos");
+        jMenu4.setEnabled(false);
+        jMenu4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu4ActionPerformed(evt);
+            }
+        });
         jMenuBar1.add(jMenu4);
 
         jMenu5.setText("Diversos");
+        jMenu5.setEnabled(false);
+        jMenu5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu5ActionPerformed(evt);
+            }
+        });
         jMenuBar1.add(jMenu5);
 
         jMenu6.setText("Backup");
+        jMenu6.setEnabled(false);
+        jMenu6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu6ActionPerformed(evt);
+            }
+        });
         jMenuBar1.add(jMenu6);
 
         jMenu7.setText("Mapa");
+        jMenu7.setEnabled(false);
 
         jMenuItem1.setText("Planta baixa");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         jMenu7.add(jMenuItem1);
 
         jMenuBar1.add(jMenu7);
@@ -180,6 +267,69 @@ public class TelaAnaliseSistElabVinhoEDerivados extends javax.swing.JFrame {
         jDesktopPane1.add(telaListagemFornecedor);
         telaListagemFornecedor.setVisible(true);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jToggleButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton4ActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(null, "Indisponível!");
+    }//GEN-LAST:event_jToggleButton4ActionPerformed
+
+    private void jToggleButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton5ActionPerformed
+        JOptionPane.showMessageDialog(null, "Indisponível!");
+    }//GEN-LAST:event_jToggleButton5ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(null, "Indisponível!");
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
+        JOptionPane.showMessageDialog(null, "Indisponível!");
+    }//GEN-LAST:event_jMenuItem10ActionPerformed
+
+    private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
+        JOptionPane.showMessageDialog(null, "Indisponível!");
+    }//GEN-LAST:event_jMenuItem11ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        JOptionPane.showMessageDialog(null, "Indisponível!");
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
+        JOptionPane.showMessageDialog(null, "Indisponível!");
+    }//GEN-LAST:event_jMenuItem12ActionPerformed
+
+    private void jMenu10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu10ActionPerformed
+        JOptionPane.showMessageDialog(null, "Indisponível!");
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenu10ActionPerformed
+
+    private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
+        JOptionPane.showMessageDialog(null, "Indisponível!");
+    }//GEN-LAST:event_jMenu1ActionPerformed
+
+    private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu2ActionPerformed
+        JOptionPane.showMessageDialog(null, "Indisponível!");        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenu2ActionPerformed
+
+    private void jMenu3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu3ActionPerformed
+        JOptionPane.showMessageDialog(null, "Indisponível!");        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenu3ActionPerformed
+
+    private void jMenu4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu4ActionPerformed
+        JOptionPane.showMessageDialog(null, "Indisponível!");        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenu4ActionPerformed
+
+    private void jMenu5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu5ActionPerformed
+        JOptionPane.showMessageDialog(null, "Indisponível!");        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenu5ActionPerformed
+
+    private void jMenu6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu6ActionPerformed
+        JOptionPane.showMessageDialog(null, "Indisponível!");        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenu6ActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        JOptionPane.showMessageDialog(null, "Indisponível!");        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments

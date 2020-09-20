@@ -5,6 +5,7 @@
  */
 package menu;
 
+import javax.swing.JOptionPane;
 import menu.analise_sist_elab_vinho_e_derivados.TelaAnaliseSistElabVinhoEDerivados;
 
 /**
@@ -39,6 +40,11 @@ public class TelaGerenciadorCantina extends javax.swing.JFrame {
 
         jToggleButton1.setText("<html>\n        Análise de Sistema <br />\n        de Produção da Uva\n</html>");
         jToggleButton1.setEnabled(false);
+        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton1ActionPerformed(evt);
+            }
+        });
 
         jToggleButton3.setText("<html>Análise de Sistema de <br/>\nElaboração de Vinho <br/>\ne Derivados</html>");
         jToggleButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -88,6 +94,11 @@ public class TelaGerenciadorCantina extends javax.swing.JFrame {
         analiseSistElabVinhoEDerivados.setVisible(true);
 //        dispose();
     }//GEN-LAST:event_jToggleButton3ActionPerformed
+
+    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(null, "Indisponível!");
+    }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     /**
      * @param args the command line arguments
