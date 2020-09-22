@@ -5,8 +5,15 @@
  */
 package menu.analise_sist_elab_vinho_e_derivados.elaboracao.recepcao;
 
-import menu.analise_sist_elab_vinho_e_derivados.elaboracao.fermentacao.*;
 import java.awt.Dimension;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import jexporttospreadsheet.JExport;
+
 
 /**
  *
@@ -17,8 +24,14 @@ public class TelaListagemFornecedor extends javax.swing.JInternalFrame {
     /**
      * Creates new form TelaListagemFermentacao
      */
+    FornecedorTableModel tableModel = new FornecedorTableModel();
+    
     public TelaListagemFornecedor() {
         initComponents();
+        jTableFornecedores.setModel(tableModel);
+        
+        Fornecedor fornecedor = new Fornecedor("1", "Aurora", "Aurora", "Rua Olavo Bilac", "Cidade Alta", "Bento Gonçalves", "RS", "95700-000", "(54) 3455-200", "sac@vinicolaaurora.com.br", "Link do nosso site: http://www.vinicolaaurora.com.br/br");
+        tableModel.addRow(fornecedor);
     }
 
     public void setPosicaoCentro() {
@@ -45,7 +58,8 @@ public class TelaListagemFornecedor extends javax.swing.JInternalFrame {
         jButtonVisualizar = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTableFornecedores = new javax.swing.JTable();
+        jButtonExportarTabela = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -77,23 +91,22 @@ public class TelaListagemFornecedor extends javax.swing.JInternalFrame {
 
         jButton7.setText("Limpar");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTableFornecedores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"1", null, null, null, null, null, null, null, null, null, null}
+                {"1", "Aurora", "Aurora", "Rua Olavo Bilac", "Cidade Alta", "Bento Gonçalves", "RS", "95700-000 ", " (54) 3455-2000", "sac@vinicolaaurora.com.br", "Link do nosso site: http://www.vinicolaaurora.com.br/br"}
             },
             new String [] {
-                "Código", "Razão Social / Propriedade", "Nome", "Endereço", "Bairro", "Cidade", "Estado", "CEP", "Telefone", "E-mail", "Anotações"
+                "Código", "Razão Social / Propriedade", "Nome", "Logradouro", "Bairro", "Cidade", "Estado", "CEP", "Telefone", "E-mail", "Anotações"
             }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, true
-            };
+        ));
+        jScrollPane1.setViewportView(jTableFornecedores);
 
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
+        jButtonExportarTabela.setText("Exportar tabela");
+        jButtonExportarTabela.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonExportarTabelaActionPerformed(evt);
             }
         });
-        jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -103,6 +116,8 @@ public class TelaListagemFornecedor extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonExportarTabela)
+                        .addGap(18, 18, 18)
                         .addComponent(jButton2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButtonVisualizar)
@@ -137,7 +152,8 @@ public class TelaListagemFornecedor extends javax.swing.JInternalFrame {
                     .addComponent(jButton2)
                     .addComponent(jButton3)
                     .addComponent(jButton4)
-                    .addComponent(jButtonVisualizar))
+                    .addComponent(jButtonVisualizar)
+                    .addComponent(jButtonExportarTabela))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 447, Short.MAX_VALUE))
         );
@@ -149,10 +165,10 @@ public class TelaListagemFornecedor extends javax.swing.JInternalFrame {
         int indexSelectedRow;
         String codigo;
         
-        indexSelectedRow = jTable1.getSelectedRow();
+        indexSelectedRow = jTableFornecedores.getSelectedRow();
         
         if (indexSelectedRow != -1) {
-            codigo = jTable1.getValueAt(indexSelectedRow, 0).toString();
+            codigo = jTableFornecedores.getValueAt(indexSelectedRow, 0).toString();
             System.out.println(codigo);
             TelaCadastroFornecedor telaCadastroFornecedor = new TelaCadastroFornecedor();
             telaCadastroFornecedor.setVisible(true);
@@ -164,6 +180,22 @@ public class TelaListagemFornecedor extends javax.swing.JInternalFrame {
         telaCadastroFornecedor.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jButtonExportarTabelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExportarTabelaActionPerformed
+        JExport jExp = new JExport();
+        String[] columnsName = tableModel.columns;
+        List<String[]> content = new ArrayList<>();
+        
+        for(Fornecedor fornecedor : tableModel.fornecedores) {
+            content.add(fornecedor.getArray());
+        }
+        
+        try {
+            jExp.export("2020-09-21_tabela_fornecedores", columnsName, content);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(TelaListagemFornecedor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButtonExportarTabelaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -171,10 +203,11 @@ public class TelaListagemFornecedor extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButtonExportarTabela;
     private javax.swing.JButton jButtonVisualizar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTableFornecedores;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

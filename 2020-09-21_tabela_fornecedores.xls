@@ -1,0 +1,32 @@
+	<table class="table table-bordered table-sm table-historico">
+		<thead>
+			<tr>
+				<th>Código</th>
+				<th>Razão Social / Propriedade</th>
+				<th>Nome</th>s
+				<th>Logradouro</th>
+				<th>Bairro</th>
+				<th>Cidade</th>
+				<th>Estado</th>
+				<th>CEP</th>
+				<th>Telefone</th>
+				<th>E-mail</th>
+				<th>Anotações</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>1</td>
+				<td>Aurora</td>
+				<td>Aurora</td>
+				<td>Rua Olavo Bilac</td>
+				<td>Cidade Alta</td>
+				<td>Bento Gonçalves</td>
+				<td>RS</td>
+				<td>95700-000</td>
+				<td>(54) 3455-200</td>
+				<td>sac@vinicolaaurora.com.br</td>
+				<td>Link do nosso site: http://www.vinicolaaurora.com.br/br</td>
+			</tr>
+		</tbody>
+	</table>
