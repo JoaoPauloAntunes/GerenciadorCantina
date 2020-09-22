@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import jexporttospreadsheet.JExport;
+import jExcel.JExcel;
 import java.io.File;
 import java.io.IOException;
 import java.util.Date;
@@ -197,17 +197,16 @@ public class TelaListagemFornecedor extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButtonExportarTabelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExportarTabelaActionPerformed
-        JExport jExp = new JExport();
+        JExcel jExcel = new JExcel();
         String[] columnsName = tableModel.columns;
         List<String[]> rows = new ArrayList<>();
-        
         
         for(Fornecedor fornecedor : tableModel.fornecedores) {
             rows.add(fornecedor.getArray());
         }
 
         try {
-            jExp.export("2020-09-21_tabela_fornecedores", columnsName, rows);
+            jExcel.export("2020-09-21_tabela_fornecedores", columnsName, rows);
         } catch (WriteException ex) {
             Logger.getLogger(TelaListagemFornecedor.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {

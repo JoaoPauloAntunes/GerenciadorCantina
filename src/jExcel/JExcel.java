@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package jexporttospreadsheet;
+package jExcel;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -31,8 +31,8 @@ import jxl.write.WriteException;
  *
  * @author joao
  */
-public class JExport {
-    public JExport() {
+public class JExcel {
+    public JExcel() {
     }
     
     public void export(String fileName, String[] columnsName, List<String[]> rows) throws WriteException, IOException {
