@@ -6,15 +6,7 @@
 package menu.analise_sist_elab_vinho_e_derivados.elaboracao.fermentacao;
 
 import java.awt.Dimension;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import static menu.analise_sist_elab_vinho_e_derivados.elaboracao.fermentacao.VisualizaCadastroFermentacao.aux;
-import static menu.analise_sist_elab_vinho_e_derivados.elaboracao.fermentacao.VisualizaCadastroFermentacao.jtCodigo;
-import static menu.analise_sist_elab_vinho_e_derivados.elaboracao.fermentacao.VisualizaCadastroFermentacao.jtData;
-import static menu.analise_sist_elab_vinho_e_derivados.elaboracao.fermentacao.VisualizaCadastroFermentacao.jtDescricao;
-import static menu.analise_sist_elab_vinho_e_derivados.elaboracao.fermentacao.VisualizaCadastroFermentacao.jtNumeroTanque;
-import static menu.analise_sist_elab_vinho_e_derivados.elaboracao.fermentacao.VisualizaCadastroFermentacao.jtOrigem;
-import static menu.analise_sist_elab_vinho_e_derivados.elaboracao.fermentacao.VisualizaCadastroFermentacao.jtVolume;
 
 
 public class TelaListagemFermentacao extends javax.swing.JInternalFrame {
@@ -306,7 +298,6 @@ public class TelaListagemFermentacao extends javax.swing.JInternalFrame {
     {
         int indexSelectedRow;
         indexSelectedRow = jTable1.getSelectedRow();
-        System.out.println(indexSelectedRow);
         
         if (indexSelectedRow != -1) {
             DefaultTableModel dtmDados = (DefaultTableModel)jTable1.getModel();
@@ -315,19 +306,17 @@ public class TelaListagemFermentacao extends javax.swing.JInternalFrame {
     }
     private void pesquisaLinha()
     {
-        System.out.println(jTable1.getRowCount());
         for (int i =0; i<jTable1.getRowCount();i++)
         {
+            
             String codigo = (String)jTable1.getValueAt(i, 0);
             String pesquisa = jtPesquisa.getText();
-            System.out.println(codigo + " " + pesquisa);
-            if(pesquisa == codigo)
+
+            if(pesquisa.equals(codigo))
             {
-                System.out.println("existe" + i);
                 int indexRow;
                 indexRow = i;
-                //VisualizaCadastroFermentacao.aux = i;
-                
+
                 VisualizaCadastroFermentacao vcf1 = new VisualizaCadastroFermentacao();
                 vcf1.setVisible(true);
 
@@ -348,8 +337,6 @@ public class TelaListagemFermentacao extends javax.swing.JInternalFrame {
                 VisualizaCadastroFermentacao.jtOrigem.setText(jTable1.getValueAt(indexRow, 5).toString());
                 
             }
-            else
-                System.out.println("nao existe");
         }
         
 
