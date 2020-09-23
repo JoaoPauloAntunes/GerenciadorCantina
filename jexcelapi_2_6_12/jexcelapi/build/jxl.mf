@@ -1,2 +1,7 @@
+<<<<<<< HEAD
 Main-Class: jxl.demo.Demo
 
+=======
+Main-Class: jxl.demo.Demo
+
+>>>>>>> fde20ebac22a557ad28f9148d0a3ed8a02c3ecf8
