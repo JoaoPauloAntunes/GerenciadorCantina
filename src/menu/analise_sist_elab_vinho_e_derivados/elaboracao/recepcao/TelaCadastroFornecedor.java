@@ -7,6 +7,8 @@ package menu.analise_sist_elab_vinho_e_derivados.elaboracao.recepcao;
 
 import br.com.parg.viacep.ViaCEP;
 import br.com.parg.viacep.ViaCEPException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import menu.TelaGerenciadorCantina;
@@ -16,12 +18,52 @@ import menu.TelaGerenciadorCantina;
  * @author joao
  */
 public class TelaCadastroFornecedor extends javax.swing.JFrame {
-
-    /**
-     * Creates new form Fornecedor
-     */
+    private final Map<String, String> estados;
+    
     public TelaCadastroFornecedor() {
         initComponents();
+        estados = new HashMap<>();
+        initEstados(estados);
+        initJComboBoxEstado(estados);
+    }
+    
+    private void initJComboBoxEstado(Map<String, String> estados) {
+        jComboBoxEstado.removeAllItems();
+        
+        for(String uf : estados.keySet()) {
+            String estado = estados.get(uf);
+            jComboBoxEstado.addItem(estado);
+        }
+    }
+    
+    private void initEstados(Map<String, String> estados) {
+        estados.put("AC", "Acre");
+        estados.put("AL", "Alagoas");
+        estados.put("AP", "Amapá");
+        estados.put("AM", "Amazonas");
+        estados.put("BA", "Bahia");
+        estados.put("CE", "Ceará");
+        estados.put("DF", "Distrito Federal");
+        estados.put("ES", "Espírito Santo");
+        estados.put("GO", "Goiás");
+        estados.put("MA", "Maranhão");
+        estados.put("MT", "Mato Grosso");
+        estados.put("MS", "Mato Grosso do Sul");
+        estados.put("MG", "Minas Gerais");
+        estados.put("PA", "Pará");
+        estados.put("PB", "Paraíba");
+        estados.put("PR", "Paraná");
+        estados.put("PE", "Pernambuco");
+        estados.put("PI", "Piauí");
+        estados.put("RJ", "Rio de Janeiro");
+        estados.put("RN", "Rio Grande do Norte");
+        estados.put("RS", "Rio Grande do Sul");
+        estados.put("RO", "Rondônia");
+        estados.put("RR", "Roraima");
+        estados.put("SC", "Santa Catarina");
+        estados.put("SP", "São Paulo");
+        estados.put("SE", "Sergipe");
+        estados.put("TO", "Tocantins");
     }
 
     /**
@@ -249,7 +291,7 @@ public class TelaCadastroFornecedor extends javax.swing.JFrame {
                 jTextFieldBairro.setText(viaCep.getBairro());
                 jTextFieldComplemento.setText(viaCep.getComplemento());
                 jTextFieldCidade.setText(viaCep.getLocalidade());
-                //jComboBoxEstado.set
+                jComboBoxEstado.setSelectedItem(estados.get(viaCep.getUf()));
             } catch (ViaCEPException ex) {
                 Logger.getLogger(TelaGerenciadorCantina.class.getName()).log(Level.SEVERE, null, ex);
             }
