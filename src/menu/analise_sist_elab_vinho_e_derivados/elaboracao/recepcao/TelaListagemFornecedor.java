@@ -85,8 +85,10 @@ public class TelaListagemFornecedor extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Código");
 
+        jButton1.setBackground(java.awt.Color.blue);
         jButton1.setText("Pesquisar");
 
+        jButton2.setBackground(java.awt.Color.green);
         jButton2.setText("Novo");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -94,10 +96,13 @@ public class TelaListagemFornecedor extends javax.swing.JInternalFrame {
             }
         });
 
+        jButton3.setBackground(java.awt.Color.orange);
         jButton3.setText("Editar");
 
+        jButton4.setBackground(java.awt.Color.red);
         jButton4.setText("Remover");
 
+        jButtonVisualizar.setBackground(java.awt.Color.blue);
         jButtonVisualizar.setText("Visualizar");
         jButtonVisualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -105,6 +110,7 @@ public class TelaListagemFornecedor extends javax.swing.JInternalFrame {
             }
         });
 
+        jButton7.setBackground(java.awt.Color.red);
         jButton7.setText("Limpar");
 
         jTableFornecedores.setModel(new javax.swing.table.DefaultTableModel(
@@ -117,6 +123,7 @@ public class TelaListagemFornecedor extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(jTableFornecedores);
 
+        jButtonExportarTabela.setBackground(new java.awt.Color(0, 100, 0));
         jButtonExportarTabela.setText("Exportar tabela");
         jButtonExportarTabela.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -134,13 +141,14 @@ public class TelaListagemFornecedor extends javax.swing.JInternalFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButtonExportarTabela)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButtonVisualizar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton4))
+                        .addComponent(jButton4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton2)
+                        .addGap(1, 1, 1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addComponent(jLabel1)
