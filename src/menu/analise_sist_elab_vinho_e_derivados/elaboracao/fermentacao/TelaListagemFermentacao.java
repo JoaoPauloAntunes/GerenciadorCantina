@@ -6,6 +6,7 @@
 package menu.analise_sist_elab_vinho_e_derivados.elaboracao.fermentacao;
 
 import java.awt.Dimension;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import static menu.analise_sist_elab_vinho_e_derivados.elaboracao.fermentacao.VisualizaCadastroFermentacao.aux;
 import static menu.analise_sist_elab_vinho_e_derivados.elaboracao.fermentacao.VisualizaCadastroFermentacao.jtCodigo;
@@ -42,8 +43,8 @@ public class TelaListagemFermentacao extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        jtPesquisa = new javax.swing.JTextField();
+        btPesquisa = new javax.swing.JButton();
         btNovo = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         btRemove = new javax.swing.JButton();
@@ -77,10 +78,10 @@ public class TelaListagemFermentacao extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Código");
 
-        jButton1.setText("Pesquisar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btPesquisa.setText("Pesquisar");
+        btPesquisa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btPesquisaActionPerformed(evt);
             }
         });
 
@@ -132,6 +133,11 @@ public class TelaListagemFermentacao extends javax.swing.JInternalFrame {
         });
 
         jButton7.setText("Limpar");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -141,9 +147,9 @@ public class TelaListagemFermentacao extends javax.swing.JInternalFrame {
                 .addGap(6, 6, 6)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 473, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 473, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addComponent(btPesquisa)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton7)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -165,8 +171,8 @@ public class TelaListagemFermentacao extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1)
+                    .addComponent(jtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btPesquisa)
                     .addComponent(jButton7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -208,27 +214,35 @@ public class TelaListagemFermentacao extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_btRemoveActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisaActionPerformed
        // botao pesquisar
-    }//GEN-LAST:event_jButton1ActionPerformed
+       pesquisaLinha();
+       
+    }//GEN-LAST:event_btPesquisaActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        //botao limpar
+        jtPesquisa.setText("");
+    }//GEN-LAST:event_jButton7ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btNovo;
+    private javax.swing.JButton btPesquisa;
     private javax.swing.JButton btRemove;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButtonVisualizar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     public static javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jtPesquisa;
     // End of variables declaration//GEN-END:variables
 
 
     private void visualizaLinha()
     {
+        
         int indexSelectedRow;
         indexSelectedRow = jTable1.getSelectedRow();
         VisualizaCadastroFermentacao.aux = indexSelectedRow;
@@ -299,6 +313,49 @@ public class TelaListagemFermentacao extends javax.swing.JInternalFrame {
             dtmDados.removeRow(indexSelectedRow);
         }
     }
-    
+    private void pesquisaLinha()
+    {
+        System.out.println(jTable1.getRowCount());
+        for (int i =0; i<jTable1.getRowCount();i++)
+        {
+            String codigo = (String)jTable1.getValueAt(i, 0);
+            String pesquisa = jtPesquisa.getText();
+            System.out.println(codigo + " " + pesquisa);
+            if(pesquisa == codigo)
+            {
+                System.out.println("existe" + i);
+                int indexRow;
+                indexRow = i;
+                //VisualizaCadastroFermentacao.aux = i;
+                
+                VisualizaCadastroFermentacao vcf1 = new VisualizaCadastroFermentacao();
+                vcf1.setVisible(true);
+
+                VisualizaCadastroFermentacao.jtCodigo.setEnabled(false);
+                VisualizaCadastroFermentacao.jtDescricao.setEnabled(false);
+                VisualizaCadastroFermentacao.jtData.setEnabled(false);
+                VisualizaCadastroFermentacao.jtVolume.setEnabled(false);
+                VisualizaCadastroFermentacao.jtNumeroTanque.setEnabled(false);
+                VisualizaCadastroFermentacao.jtOrigem.setEnabled(false);
+                VisualizaCadastroFermentacao.btSalvar.setVisible(false);
+                VisualizaCadastroFermentacao.btCancelar.setVisible(false);
+
+                VisualizaCadastroFermentacao.jtCodigo.setText(jTable1.getValueAt(indexRow, 0).toString());
+                VisualizaCadastroFermentacao.jtDescricao.setText(jTable1.getValueAt(indexRow, 1).toString());
+                VisualizaCadastroFermentacao.jtData.setText(jTable1.getValueAt(indexRow, 2).toString());
+                VisualizaCadastroFermentacao.jtNumeroTanque.setText(jTable1.getValueAt(indexRow, 3).toString());
+                VisualizaCadastroFermentacao.jtVolume.setText(jTable1.getValueAt(indexRow, 4).toString());
+                VisualizaCadastroFermentacao.jtOrigem.setText(jTable1.getValueAt(indexRow, 5).toString());
+                
+            }
+            else
+                System.out.println("nao existe");
+        }
+        
+
+        
+        
+        
+    }
     
 }

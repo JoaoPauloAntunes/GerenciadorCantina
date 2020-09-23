@@ -12,8 +12,24 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import jexporttospreadsheet.JExport;
+import jExcel.JExcel;
+import java.io.File;
+import java.io.IOException;
+import java.util.Date;
+import java.util.Random;
 
+import jxl.Workbook;
+import jxl.format.Colour;
+import jxl.write.DateFormat;
+import jxl.write.DateTime;
+import jxl.write.Label;
+import jxl.write.Number;
+import jxl.write.WritableCell;
+import jxl.write.WritableCellFormat;
+import jxl.write.WritableFont;
+import jxl.write.WritableSheet;
+import jxl.write.WritableWorkbook;
+import jxl.write.WriteException;
 
 /**
  *
@@ -181,17 +197,19 @@ public class TelaListagemFornecedor extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButtonExportarTabelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExportarTabelaActionPerformed
-        JExport jExp = new JExport();
+        JExcel jExcel = new JExcel();
         String[] columnsName = tableModel.columns;
-        List<String[]> content = new ArrayList<>();
+        List<String[]> rows = new ArrayList<>();
         
         for(Fornecedor fornecedor : tableModel.fornecedores) {
-            content.add(fornecedor.getArray());
+            rows.add(fornecedor.getArray());
         }
-        
+
         try {
-            jExp.export("2020-09-21_tabela_fornecedores", columnsName, content);
-        } catch (FileNotFoundException ex) {
+            jExcel.export("2020-09-21_tabela_fornecedores", columnsName, rows);
+        } catch (WriteException ex) {
+            Logger.getLogger(TelaListagemFornecedor.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
             Logger.getLogger(TelaListagemFornecedor.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButtonExportarTabelaActionPerformed
