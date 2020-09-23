@@ -2,8 +2,8 @@
 	<table class='table table-hover'>
 		<thead>
 			<tr height='height: 30px;'>
-				<th style='background:#083923; color: #fff; text-align: center'>C�digo</th>
-				<th style='background:#083923; color: #fff; text-align: center'>Raz�o Social / Propriedade</th>
+				<th style='background:#083923; color: #fff; text-align: center'>Código</th>
+				<th style='background:#083923; color: #fff; text-align: center'>Razão Social / Propriedade</th>
 				<th style='background:#083923; color: #fff; text-align: center'>Nome</th>
 				<th style='background:#083923; color: #fff; text-align: center'>Logradouro</th>
 				<th style='background:#083923; color: #fff; text-align: center'>Bairro</th>
@@ -12,7 +12,7 @@
 				<th style='background:#083923; color: #fff; text-align: center'>CEP</th>
 				<th style='background:#083923; color: #fff; text-align: center'>Telefone</th>
 				<th style='background:#083923; color: #fff; text-align: center'>E-mail</th>
-				<th style='background:#083923; color: #fff; text-align: center'>Anota��es</th>
+				<th style='background:#083923; color: #fff; text-align: center'>Anotações</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -22,7 +22,7 @@
 				<td style='border-bottom: 2px solid #878484; vertical-align: middle;'>Aurora</td>
 				<td style='border-bottom: 2px solid #878484; vertical-align: middle;'>Rua Olavo Bilac</td>
 				<td style='border-bottom: 2px solid #878484; vertical-align: middle;'>Cidade Alta</td>
-				<td style='border-bottom: 2px solid #878484; vertical-align: middle;'>Bento Gon�alves</td>
+				<td style='border-bottom: 2px solid #878484; vertical-align: middle;'>Bento Gonçalves</td>
 				<td style='border-bottom: 2px solid #878484; vertical-align: middle;'>RS</td>
 				<td style='border-bottom: 2px solid #878484; vertical-align: middle;'>95700-000</td>
 				<td style='border-bottom: 2px solid #878484; vertical-align: middle;'>(54) 3455-200</td>

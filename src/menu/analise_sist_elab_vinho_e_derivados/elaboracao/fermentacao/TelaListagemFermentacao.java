@@ -6,11 +6,16 @@
 package menu.analise_sist_elab_vinho_e_derivados.elaboracao.fermentacao;
 
 import java.awt.Dimension;
+import javax.swing.table.DefaultTableModel;
+import static menu.analise_sist_elab_vinho_e_derivados.elaboracao.fermentacao.VisualizaCadastroFermentacao.aux;
+import static menu.analise_sist_elab_vinho_e_derivados.elaboracao.fermentacao.VisualizaCadastroFermentacao.jtCodigo;
+import static menu.analise_sist_elab_vinho_e_derivados.elaboracao.fermentacao.VisualizaCadastroFermentacao.jtData;
+import static menu.analise_sist_elab_vinho_e_derivados.elaboracao.fermentacao.VisualizaCadastroFermentacao.jtDescricao;
+import static menu.analise_sist_elab_vinho_e_derivados.elaboracao.fermentacao.VisualizaCadastroFermentacao.jtNumeroTanque;
+import static menu.analise_sist_elab_vinho_e_derivados.elaboracao.fermentacao.VisualizaCadastroFermentacao.jtOrigem;
+import static menu.analise_sist_elab_vinho_e_derivados.elaboracao.fermentacao.VisualizaCadastroFermentacao.jtVolume;
 
-/**
- *
- * @author joao
- */
+
 public class TelaListagemFermentacao extends javax.swing.JInternalFrame {
 
     /**
@@ -41,7 +46,7 @@ public class TelaListagemFermentacao extends javax.swing.JInternalFrame {
         jButton1 = new javax.swing.JButton();
         btNovo = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btRemove = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButtonVisualizar = new javax.swing.JButton();
@@ -73,6 +78,11 @@ public class TelaListagemFermentacao extends javax.swing.JInternalFrame {
         jLabel1.setText("Código");
 
         jButton1.setText("Pesquisar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         btNovo.setText("Novo");
         btNovo.addActionListener(new java.awt.event.ActionListener() {
@@ -82,8 +92,18 @@ public class TelaListagemFermentacao extends javax.swing.JInternalFrame {
         });
 
         jButton3.setText("Editar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
-        jButton4.setText("Remover");
+        btRemove.setText("Remover");
+        btRemove.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btRemoveActionPerformed(evt);
+            }
+        });
 
         jTable1.setAutoCreateRowSorter(true);
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -136,7 +156,7 @@ public class TelaListagemFermentacao extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton4)
+                .addComponent(btRemove)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -152,7 +172,7 @@ public class TelaListagemFermentacao extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btNovo)
                     .addComponent(jButton3)
-                    .addComponent(jButton4)
+                    .addComponent(btRemove)
                     .addComponent(jButtonVisualizar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -163,18 +183,7 @@ public class TelaListagemFermentacao extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonVisualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVisualizarActionPerformed
-        // TODO add your handling code here:
-        int indexSelectedRow;
-        String codigo;
-        
-        indexSelectedRow = jTable1.getSelectedRow();
-        
-        if (indexSelectedRow != -1) {
-            codigo = jTable1.getValueAt(indexSelectedRow, 0).toString();
-            System.out.println(codigo);
-            TelaCadastroFermentacao telaCadastroFermentacao = new TelaCadastroFermentacao();
-            telaCadastroFermentacao.setVisible(true);
-        }
+        visualizaLinha();   
     }//GEN-LAST:event_jButtonVisualizarActionPerformed
 
     private void btNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNovoActionPerformed
@@ -189,12 +198,26 @@ public class TelaListagemFermentacao extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_formInternalFrameClosing
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        editaLinha();
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void btRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRemoveActionPerformed
+        // botao remover
+        removeLinha();
+        
+    }//GEN-LAST:event_btRemoveActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       // botao pesquisar
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btNovo;
+    private javax.swing.JButton btRemove;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButtonVisualizar;
     private javax.swing.JLabel jLabel1;
@@ -202,4 +225,80 @@ public class TelaListagemFermentacao extends javax.swing.JInternalFrame {
     public static javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
+
+
+    private void visualizaLinha()
+    {
+        int indexSelectedRow;
+        indexSelectedRow = jTable1.getSelectedRow();
+        VisualizaCadastroFermentacao.aux = indexSelectedRow;
+        if (indexSelectedRow != -1) {
+        VisualizaCadastroFermentacao vcf1 = new VisualizaCadastroFermentacao();
+        vcf1.setVisible(true);
+        
+        VisualizaCadastroFermentacao.jtCodigo.setEnabled(false);
+        VisualizaCadastroFermentacao.jtDescricao.setEnabled(false);
+        VisualizaCadastroFermentacao.jtData.setEnabled(false);
+        VisualizaCadastroFermentacao.jtVolume.setEnabled(false);
+        VisualizaCadastroFermentacao.jtNumeroTanque.setEnabled(false);
+        VisualizaCadastroFermentacao.jtOrigem.setEnabled(false);
+        VisualizaCadastroFermentacao.btSalvar.setVisible(false);
+        VisualizaCadastroFermentacao.btCancelar.setVisible(false);
+        
+       
+        
+        VisualizaCadastroFermentacao.jtCodigo.setText(jTable1.getValueAt(indexSelectedRow, 0).toString());
+        VisualizaCadastroFermentacao.jtDescricao.setText(jTable1.getValueAt(indexSelectedRow, 1).toString());
+        VisualizaCadastroFermentacao.jtData.setText(jTable1.getValueAt(indexSelectedRow, 2).toString());
+        VisualizaCadastroFermentacao.jtNumeroTanque.setText(jTable1.getValueAt(indexSelectedRow, 3).toString());
+        VisualizaCadastroFermentacao.jtVolume.setText(jTable1.getValueAt(indexSelectedRow, 4).toString());
+        VisualizaCadastroFermentacao.jtOrigem.setText(jTable1.getValueAt(indexSelectedRow, 5).toString());
+        }
+        
+        
+        
+    }
+    private void editaLinha()
+    {
+        int indexSelectedRow;
+        indexSelectedRow = jTable1.getSelectedRow();
+        VisualizaCadastroFermentacao.aux = indexSelectedRow;
+        
+        if (indexSelectedRow != -1) {
+        VisualizaCadastroFermentacao vcf1 = new VisualizaCadastroFermentacao();
+        vcf1.setVisible(true);
+        
+        VisualizaCadastroFermentacao.jtCodigo.setEnabled(true);
+        VisualizaCadastroFermentacao.jtDescricao.setEnabled(true);
+        VisualizaCadastroFermentacao.jtData.setEnabled(true);
+        VisualizaCadastroFermentacao.jtVolume.setEnabled(true);
+        VisualizaCadastroFermentacao.jtNumeroTanque.setEnabled(true);
+        VisualizaCadastroFermentacao.jtOrigem.setEnabled(true);
+        VisualizaCadastroFermentacao.jButton1.setVisible(false);
+        VisualizaCadastroFermentacao.btSalvar.setVisible(true);
+        VisualizaCadastroFermentacao.btCancelar.setVisible(true);
+        
+       
+        
+        VisualizaCadastroFermentacao.jtCodigo.setText(jTable1.getValueAt(indexSelectedRow, 0).toString());
+        VisualizaCadastroFermentacao.jtDescricao.setText(jTable1.getValueAt(indexSelectedRow, 1).toString());
+        VisualizaCadastroFermentacao.jtData.setText(jTable1.getValueAt(indexSelectedRow, 2).toString());
+        VisualizaCadastroFermentacao.jtNumeroTanque.setText(jTable1.getValueAt(indexSelectedRow, 3).toString());
+        VisualizaCadastroFermentacao.jtVolume.setText(jTable1.getValueAt(indexSelectedRow, 4).toString());
+        VisualizaCadastroFermentacao.jtOrigem.setText(jTable1.getValueAt(indexSelectedRow, 5).toString());
+        }
+    }
+    private void removeLinha()
+    {
+        int indexSelectedRow;
+        indexSelectedRow = jTable1.getSelectedRow();
+        System.out.println(indexSelectedRow);
+        
+        if (indexSelectedRow != -1) {
+            DefaultTableModel dtmDados = (DefaultTableModel)jTable1.getModel();
+            dtmDados.removeRow(indexSelectedRow);
+        }
+    }
+    
+    
 }

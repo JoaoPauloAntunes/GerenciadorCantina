@@ -18,6 +18,7 @@ public class TelaCadastroFermentacao extends javax.swing.JFrame {
     
     public TelaCadastroFermentacao() {
         initComponents();
+        
     }
 
     
