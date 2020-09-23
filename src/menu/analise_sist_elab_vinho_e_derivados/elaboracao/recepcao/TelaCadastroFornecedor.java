@@ -12,6 +12,7 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import menu.TelaGerenciadorCantina;
+import util.FormSanitize;
 
 /**
  *
@@ -280,7 +281,8 @@ public class TelaCadastroFornecedor extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jFormattedTextFieldCepFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jFormattedTextFieldCepFocusLost
-        String cep = jFormattedTextFieldCep.getText().replaceAll("\\D", "");
+        FormSanitize formSanitize = new FormSanitize();
+        String cep = formSanitize.sanitizeCep(jFormattedTextFieldCep.getText());
         
         if (cep.length() == 8) {
             ViaCEP viaCep = new ViaCEP();
