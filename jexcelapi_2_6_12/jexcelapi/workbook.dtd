@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!-- The DTD required for the XML demonstration program xlrd.XML -->
 
 <!ELEMENT workbook (sheet*)>
@@ -11,3 +12,18 @@
 
 <!ELEMENT col (#PCDATA)>
 <!ATTLIST col number CDATA #REQUIRED>
+=======
+<!-- The DTD required for the XML demonstration program xlrd.XML -->
+
+<!ELEMENT workbook (sheet*)>
+
+<!ELEMENT sheet (name, row*)>
+
+<!ELEMENT name (#PCDATA)>
+
+<!ELEMENT row (col*)>
+<!ATTLIST row number CDATA #REQUIRED>
+
+<!ELEMENT col (#PCDATA)>
+<!ATTLIST col number CDATA #REQUIRED>
+>>>>>>> fde20ebac22a557ad28f9148d0a3ed8a02c3ecf8

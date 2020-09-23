@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
 
@@ -22,3 +23,29 @@
 	</root>
 	
 </log4j:configuration>
+=======
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+	<appender name="FILE" class="org.apache.log4j.FileAppender">
+    <param name="File"   value="jxl.log" />
+    <param name="Append" value="false" />	    	
+    <layout class="org.apache.log4j.PatternLayout">
+      <param name="ConversionPattern" value="%d [%-5p] %c %x - %m%n" />
+    </layout>	    
+	</appender>
+	
+	<appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+      <param name="ConversionPattern" value="%d [%-5p] %c %x - %m%n" />
+		</layout>		
+	</appender>
+	
+	<root>
+	   <priority value ="debug" />
+ 	   <appender-ref ref="FILE" />
+	</root>
+	
+</log4j:configuration>
+>>>>>>> fde20ebac22a557ad28f9148d0a3ed8a02c3ecf8
