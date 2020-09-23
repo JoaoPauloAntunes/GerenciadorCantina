@@ -6,29 +6,15 @@
 package menu.analise_sist_elab_vinho_e_derivados.elaboracao.recepcao;
 
 import java.awt.Dimension;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import jExcel.JExcel;
-import java.io.File;
 import java.io.IOException;
-import java.util.Date;
-import java.util.Random;
-
-import jxl.Workbook;
-import jxl.format.Colour;
-import jxl.write.DateFormat;
-import jxl.write.DateTime;
-import jxl.write.Label;
-import jxl.write.Number;
-import jxl.write.WritableCell;
-import jxl.write.WritableCellFormat;
-import jxl.write.WritableFont;
-import jxl.write.WritableSheet;
-import jxl.write.WritableWorkbook;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import jxl.write.WriteException;
 
 /**
@@ -66,8 +52,8 @@ public class TelaListagemFornecedor extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        jTextFieldCodigo = new javax.swing.JTextField();
+        jButtonPesquisar = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
@@ -85,8 +71,8 @@ public class TelaListagemFornecedor extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Código");
 
-        jButton1.setBackground(java.awt.Color.blue);
-        jButton1.setText("Pesquisar");
+        jButtonPesquisar.setBackground(java.awt.Color.blue);
+        jButtonPesquisar.setText("Pesquisar");
 
         jButton2.setBackground(java.awt.Color.green);
         jButton2.setText("Novo");
@@ -112,6 +98,11 @@ public class TelaListagemFornecedor extends javax.swing.JInternalFrame {
 
         jButton7.setBackground(java.awt.Color.red);
         jButton7.setText("Limpar");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
         jTableFornecedores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -153,9 +144,9 @@ public class TelaListagemFornecedor extends javax.swing.JInternalFrame {
                         .addGap(6, 6, 6)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1)
+                        .addComponent(jTextFieldCodigo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1)
+                        .addComponent(jButtonPesquisar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton7)))
                 .addContainerGap())
@@ -167,8 +158,8 @@ public class TelaListagemFornecedor extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1)
+                    .addComponent(jTextFieldCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonPesquisar)
                     .addComponent(jButton7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -211,9 +202,11 @@ public class TelaListagemFornecedor extends javax.swing.JInternalFrame {
         for(Fornecedor fornecedor : tableModel.fornecedores) {
             rows.add(fornecedor.getArray());
         }
-
+        
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDateTime now = LocalDateTime.now();
         try {
-            jExcel.export("2020-09-21_tabela_fornecedores", columnsName, rows);
+            jExcel.export(dtf.format(now) + "_tabela_fornecedores", columnsName, rows);
         } catch (WriteException ex) {
             Logger.getLogger(TelaListagemFornecedor.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -221,18 +214,22 @@ public class TelaListagemFornecedor extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jButtonExportarTabelaActionPerformed
 
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        jTextFieldCodigo.setText("");
+    }//GEN-LAST:event_jButton7ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButtonExportarTabela;
+    private javax.swing.JButton jButtonPesquisar;
     private javax.swing.JButton jButtonVisualizar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableFornecedores;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextFieldCodigo;
     // End of variables declaration//GEN-END:variables
 }
