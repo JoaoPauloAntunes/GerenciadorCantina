@@ -15,7 +15,7 @@ import javax.swing.table.AbstractTableModel;
  */
 public class FornecedorTableModel extends AbstractTableModel {
     protected List<Fornecedor> fornecedores = new ArrayList<>();
-    protected final String[] columns = {"Código", "Razão Social / Propriedade", "Nome", "Logradouro", "Bairro", "Cidade", "Estado", "CEP", "Telefone", "E-mail", "Anotações"};
+    protected final String[] columns = {"Código", "Razão Social / Propriedade", "Nome", "CEP", "Logradouro", "Número", "Estado", "Cidade", "Bairro", "Complemento", "Telefone", "E-mail", "Anotações"};
     
     @Override
     public String getColumnName(int column) {
@@ -43,20 +43,24 @@ public class FornecedorTableModel extends AbstractTableModel {
             case 2:
                 return fornecedor.getNome();
             case 3:
-                return fornecedor.getLogradouro();
+                return fornecedor.getCep();
             case 4:
-                return fornecedor.getBairro();
+                return fornecedor.getLogradouro();
             case 5:
-                return fornecedor.getCidade();
+                return fornecedor.getNumero();
             case 6:
                 return fornecedor.getEstado();
             case 7:
-                return fornecedor.getCep();
+                return fornecedor.getCidade();
             case 8:
-                return fornecedor.getTel();
+                return fornecedor.getBairro();
             case 9:
-                return fornecedor.getEmail();
+                return fornecedor.getComplemento();
             case 10:
+                return fornecedor.getTel();
+            case 11:
+                return fornecedor.getEmail();
+            case 12:
                 return fornecedor.getAnotacoes();
             default:
                 return null;

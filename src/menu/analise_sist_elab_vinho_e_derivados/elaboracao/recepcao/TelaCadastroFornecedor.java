@@ -19,15 +19,27 @@ import util.FormSanitize;
  * @author joao
  */
 public class TelaCadastroFornecedor extends javax.swing.JFrame {
-    private final Map<String, String> estados;
+    protected final Map<String, String> estados;
+    private int idRow = -1;
     
     public TelaCadastroFornecedor() {
         initComponents();
+        
         estados = new HashMap<>();
         initEstados(estados);
         initJComboBoxEstado(estados);
     }
     
+    public TelaCadastroFornecedor(int idRow) {
+        initComponents();
+        
+        estados = new HashMap<>();
+        initEstados(estados);
+        initJComboBoxEstado(estados);
+        
+        this.idRow = idRow;
+    }
+
     private void initJComboBoxEstado(Map<String, String> estados) {
         jComboBoxEstado.removeAllItems();
         
@@ -77,9 +89,9 @@ public class TelaCadastroFornecedor extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        jTextFieldCodigo = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        jTextFieldNome = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jTextFieldLogradouro = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
@@ -90,11 +102,11 @@ public class TelaCadastroFornecedor extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jToggleButtonCancelar = new javax.swing.JToggleButton();
         jToggleButtonSalvar = new javax.swing.JToggleButton();
-        jTextField12 = new javax.swing.JTextField();
+        jTextFieldRazaoSocial = new javax.swing.JTextField();
         jFormattedTextFieldCep = new javax.swing.JFormattedTextField();
         jLabel8 = new javax.swing.JLabel();
-        jTextField13 = new javax.swing.JTextField();
-        jFormattedTextField2 = new javax.swing.JFormattedTextField();
+        jTextFieldEmail = new javax.swing.JTextField();
+        jFormattedTextFieldTel = new javax.swing.JFormattedTextField();
         jComboBoxEstado = new javax.swing.JComboBox<>();
         jTextFieldBairro = new javax.swing.JTextField();
         jFormattedTextFieldNumero = new javax.swing.JFormattedTextField();
@@ -102,6 +114,9 @@ public class TelaCadastroFornecedor extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jTextFieldComplemento = new javax.swing.JTextField();
         jTextFieldCidade = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextAreaAnotacoes = new javax.swing.JTextArea();
+        jLabel12 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro de Fornecedor");
@@ -129,6 +144,11 @@ public class TelaCadastroFornecedor extends javax.swing.JFrame {
 
         jToggleButtonSalvar.setBackground(java.awt.Color.green);
         jToggleButtonSalvar.setText("Salvar");
+        jToggleButtonSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButtonSalvarActionPerformed(evt);
+            }
+        });
 
         try {
             jFormattedTextFieldCep.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-###")));
@@ -144,18 +164,24 @@ public class TelaCadastroFornecedor extends javax.swing.JFrame {
         jLabel8.setText("Complemento");
 
         try {
-            jFormattedTextField2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) #####-####")));
+            jFormattedTextFieldTel.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)####-#####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
 
         jComboBoxEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jFormattedTextFieldNumero.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
+        jFormattedTextFieldNumero.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
 
         jLabel13.setText("E-mail");
 
         jLabel11.setText("Bairro");
+
+        jTextAreaAnotacoes.setColumns(20);
+        jTextAreaAnotacoes.setRows(5);
+        jScrollPane1.setViewportView(jTextAreaAnotacoes);
+
+        jLabel12.setText("Anotações");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -164,47 +190,53 @@ public class TelaCadastroFornecedor extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel8)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jTextFieldComplemento, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jFormattedTextFieldCep, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
-                                .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jComboBoxEstado, javax.swing.GroupLayout.Alignment.LEADING, 0, 186, Short.MAX_VALUE)
-                                .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel8)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(jTextFieldComplemento, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jFormattedTextFieldCep, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
+                                        .addComponent(jTextFieldCodigo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
+                                        .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jComboBoxEstado, javax.swing.GroupLayout.Alignment.LEADING, 0, 186, Short.MAX_VALUE)
+                                        .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jFormattedTextFieldTel)
+                                    .addComponent(jTextFieldLogradouro)
+                                    .addComponent(jTextFieldRazaoSocial)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jTextFieldCidade)))
+                            .addComponent(jLabel1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jFormattedTextField2)
-                            .addComponent(jTextFieldLogradouro)
-                            .addComponent(jTextField12)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6)
-                            .addComponent(jTextFieldCidade)))
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jFormattedTextFieldNumero)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
-                    .addComponent(jTextField13)
-                    .addComponent(jTextFieldBairro)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jFormattedTextFieldNumero)
+                            .addComponent(jTextFieldNome)
+                            .addComponent(jTextFieldEmail)
+                            .addComponent(jTextFieldBairro)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel13)
+                                    .addComponent(jLabel11))
+                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel13)
-                            .addComponent(jLabel11))
-                        .addGap(0, 155, Short.MAX_VALUE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(268, 268, 268)
+                                .addComponent(jToggleButtonCancelar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jToggleButtonSalvar))
+                            .addComponent(jLabel12))
+                        .addGap(0, 218, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(234, 234, 234)
-                .addComponent(jToggleButtonCancelar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jToggleButtonSalvar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -218,13 +250,13 @@ public class TelaCadastroFornecedor extends javax.swing.JFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel1)
                                         .addGap(5, 5, 5)
-                                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jTextFieldCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel2)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                            .addComponent(jTextFieldRazaoSocial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jTextFieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
@@ -254,7 +286,7 @@ public class TelaCadastroFornecedor extends javax.swing.JFrame {
                                 .addGap(12, 12, 12)
                                 .addComponent(jLabel10)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jFormattedTextFieldTel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel11)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -263,13 +295,17 @@ public class TelaCadastroFornecedor extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(24, 24, 24)
-                                        .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jTextFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(jLabel13)))))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextFieldComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jToggleButtonCancelar)
                     .addComponent(jToggleButtonSalvar))
@@ -299,14 +335,19 @@ public class TelaCadastroFornecedor extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jFormattedTextFieldCepFocusLost
 
+    private void jToggleButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonSalvarActionPerformed
+        
+    }//GEN-LAST:event_jToggleButtonSalvarActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> jComboBoxEstado;
-    private javax.swing.JFormattedTextField jFormattedTextField2;
-    private javax.swing.JFormattedTextField jFormattedTextFieldCep;
-    private javax.swing.JFormattedTextField jFormattedTextFieldNumero;
+    protected javax.swing.JComboBox<String> jComboBoxEstado;
+    protected javax.swing.JFormattedTextField jFormattedTextFieldCep;
+    protected javax.swing.JFormattedTextField jFormattedTextFieldNumero;
+    protected javax.swing.JFormattedTextField jFormattedTextFieldTel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -316,15 +357,17 @@ public class TelaCadastroFornecedor extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField12;
-    private javax.swing.JTextField jTextField13;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextFieldBairro;
-    private javax.swing.JTextField jTextFieldCidade;
-    private javax.swing.JTextField jTextFieldComplemento;
-    private javax.swing.JTextField jTextFieldLogradouro;
+    private javax.swing.JScrollPane jScrollPane1;
+    protected javax.swing.JTextArea jTextAreaAnotacoes;
+    protected javax.swing.JTextField jTextFieldBairro;
+    protected javax.swing.JTextField jTextFieldCidade;
+    protected javax.swing.JTextField jTextFieldCodigo;
+    protected javax.swing.JTextField jTextFieldComplemento;
+    protected javax.swing.JTextField jTextFieldEmail;
+    protected javax.swing.JTextField jTextFieldLogradouro;
+    protected javax.swing.JTextField jTextFieldNome;
+    protected javax.swing.JTextField jTextFieldRazaoSocial;
     private javax.swing.JToggleButton jToggleButtonCancelar;
-    private javax.swing.JToggleButton jToggleButtonSalvar;
+    protected javax.swing.JToggleButton jToggleButtonSalvar;
     // End of variables declaration//GEN-END:variables
 }
