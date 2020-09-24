@@ -333,7 +333,13 @@ public class TelaListagemFornecedor extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_formInternalFrameClosing
 
     private void jButtonRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoverActionPerformed
+        int indexSelectedRow = jTableFornecedores.getSelectedRow();
         
+        if (this.tableModel.fornecedores != null && indexSelectedRow >= 0 && indexSelectedRow < this.tableModel.fornecedores.size()) {
+            this.tableModel.fornecedores.remove(indexSelectedRow);
+            SerializeListagemFornecedor.save(tableModel.fornecedores);
+            tableModel.fireTableDataChanged();
+        }
     }//GEN-LAST:event_jButtonRemoverActionPerformed
 
 
