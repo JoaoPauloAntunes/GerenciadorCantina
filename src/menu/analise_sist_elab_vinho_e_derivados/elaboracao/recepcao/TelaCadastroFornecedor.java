@@ -380,6 +380,6 @@ public class TelaCadastroFornecedor extends javax.swing.JFrame {
     protected javax.swing.JTextField jTextFieldNome;
     protected javax.swing.JTextField jTextFieldRazaoSocial;
     protected javax.swing.JToggleButton jToggleButtonCancelar;
-    protected javax.swing.JToggleButton jToggleButtonSalvar;
+    javax.swing.JToggleButton jToggleButtonSalvar;
     // End of variables declaration//GEN-END:variables
 }
