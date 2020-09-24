@@ -136,12 +136,10 @@ public class TelaListagemFornecedor extends javax.swing.JInternalFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jTextFieldPesquisarCodigo = new javax.swing.JTextField();
-        jButtonPesquisar = new javax.swing.JButton();
         jButtonNovo = new javax.swing.JButton();
         jButtonEditar = new javax.swing.JButton();
         jButtonRemover = new javax.swing.JButton();
         jButtonVisualizar = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableFornecedores = new javax.swing.JTable();
         jButtonExportarTabela = new javax.swing.JButton();
@@ -183,9 +181,6 @@ public class TelaListagemFornecedor extends javax.swing.JInternalFrame {
             }
         });
 
-        jButtonPesquisar.setBackground(java.awt.Color.blue);
-        jButtonPesquisar.setText("Pesquisar");
-
         jButtonNovo.setBackground(java.awt.Color.green);
         jButtonNovo.setText("Novo");
         jButtonNovo.addActionListener(new java.awt.event.ActionListener() {
@@ -215,14 +210,6 @@ public class TelaListagemFornecedor extends javax.swing.JInternalFrame {
         jButtonVisualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonVisualizarActionPerformed(evt);
-            }
-        });
-
-        jButton7.setBackground(java.awt.Color.red);
-        jButton7.setText("Limpar");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
             }
         });
 
@@ -266,11 +253,7 @@ public class TelaListagemFornecedor extends javax.swing.JInternalFrame {
                         .addGap(6, 6, 6)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldPesquisarCodigo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonPesquisar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton7))
+                        .addComponent(jTextFieldPesquisarCodigo))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 886, Short.MAX_VALUE)))
@@ -282,9 +265,7 @@ public class TelaListagemFornecedor extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextFieldPesquisarCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonPesquisar)
-                    .addComponent(jButton7))
+                    .addComponent(jTextFieldPesquisarCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonNovo)
@@ -293,7 +274,7 @@ public class TelaListagemFornecedor extends javax.swing.JInternalFrame {
                     .addComponent(jButtonVisualizar)
                     .addComponent(jButtonExportarTabela))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 524, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 525, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -337,10 +318,6 @@ public class TelaListagemFornecedor extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jButtonExportarTabelaActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        jTextFieldPesquisarCodigo.setText("");
-    }//GEN-LAST:event_jButton7ActionPerformed
-
     private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
         int indexSelectedRow = jTableFornecedores.getSelectedRow();
         
@@ -381,11 +358,9 @@ public class TelaListagemFornecedor extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton7;
     private javax.swing.JButton jButtonEditar;
     private javax.swing.JButton jButtonExportarTabela;
     private javax.swing.JButton jButtonNovo;
-    private javax.swing.JButton jButtonPesquisar;
     private javax.swing.JButton jButtonRemover;
     private javax.swing.JButton jButtonVisualizar;
     private javax.swing.JLabel jLabel1;
