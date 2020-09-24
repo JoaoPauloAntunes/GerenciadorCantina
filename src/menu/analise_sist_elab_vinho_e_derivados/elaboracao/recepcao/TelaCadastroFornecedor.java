@@ -8,6 +8,7 @@ package menu.analise_sist_elab_vinho_e_derivados.elaboracao.recepcao;
 import br.com.parg.viacep.ViaCEP;
 import br.com.parg.viacep.ViaCEPException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,7 +21,9 @@ import util.FormSanitize;
  */
 public class TelaCadastroFornecedor extends javax.swing.JFrame {
     protected final Map<String, String> estados;
-    private int idRow = -1;
+    private List<Fornecedor> fornecedores;
+    private int indexSelectedRow;
+    private String codigo;
     
     public TelaCadastroFornecedor() {
         initComponents();
@@ -30,14 +33,15 @@ public class TelaCadastroFornecedor extends javax.swing.JFrame {
         initJComboBoxEstado(estados);
     }
     
-    public TelaCadastroFornecedor(int idRow) {
+    public TelaCadastroFornecedor(List<Fornecedor> fornecedores, int indexSelectedRow, String codigo) {
         initComponents();
         
         estados = new HashMap<>();
         initEstados(estados);
         initJComboBoxEstado(estados);
-        
-        this.idRow = idRow;
+        this.fornecedores = fornecedores;
+        this.indexSelectedRow = indexSelectedRow;
+        this.codigo = codigo;
     }
 
     private void initJComboBoxEstado(Map<String, String> estados) {
@@ -141,6 +145,11 @@ public class TelaCadastroFornecedor extends javax.swing.JFrame {
 
         jToggleButtonCancelar.setBackground(java.awt.Color.red);
         jToggleButtonCancelar.setText("Cancelar");
+        jToggleButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButtonCancelarActionPerformed(evt);
+            }
+        });
 
         jToggleButtonSalvar.setBackground(java.awt.Color.green);
         jToggleButtonSalvar.setText("Salvar");
@@ -316,8 +325,7 @@ public class TelaCadastroFornecedor extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jFormattedTextFieldCepFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jFormattedTextFieldCepFocusLost
-        FormSanitize formSanitize = new FormSanitize();
-        String cep = formSanitize.sanitizeCep(jFormattedTextFieldCep.getText());
+        String cep = FormSanitize.sanitizeCep(jFormattedTextFieldCep.getText());
         
         if (cep.length() == 8) {
             ViaCEP viaCep = new ViaCEP();
@@ -338,6 +346,10 @@ public class TelaCadastroFornecedor extends javax.swing.JFrame {
     private void jToggleButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonSalvarActionPerformed
         
     }//GEN-LAST:event_jToggleButtonSalvarActionPerformed
+
+    private void jToggleButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonCancelarActionPerformed
+        this.setVisible(false);
+    }//GEN-LAST:event_jToggleButtonCancelarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     protected javax.swing.JComboBox<String> jComboBoxEstado;
@@ -367,7 +379,7 @@ public class TelaCadastroFornecedor extends javax.swing.JFrame {
     protected javax.swing.JTextField jTextFieldLogradouro;
     protected javax.swing.JTextField jTextFieldNome;
     protected javax.swing.JTextField jTextFieldRazaoSocial;
-    private javax.swing.JToggleButton jToggleButtonCancelar;
+    protected javax.swing.JToggleButton jToggleButtonCancelar;
     protected javax.swing.JToggleButton jToggleButtonSalvar;
     // End of variables declaration//GEN-END:variables
 }
