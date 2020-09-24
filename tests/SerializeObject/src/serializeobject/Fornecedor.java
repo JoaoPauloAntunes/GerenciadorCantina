@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package menu.analise_sist_elab_vinho_e_derivados.elaboracao.recepcao;
+package serializeobject;
 
 import java.io.Serializable;
 
@@ -15,70 +15,50 @@ public class Fornecedor implements Serializable {
     private String codigo;
     private String razaoSocial;
     private String nome;
-    private String cep;
     private String logradouro;
-    private String numero;
-    private String estado;
-    private String cidade;
     private String bairro;
-    private String complemento;
+    private String cidade;
+    private String estado;
+    private String cep;
     private String tel;
     private String email;
     private String anotacoes;
     
-    public Fornecedor(String codigo, String razaoSocial, String nome, String cep, String logradouro, String numero, String estado, String cidade, String bairro, String complemento, String tel, String email, String anotacoes) {
+    public Fornecedor(String codigo) { // temporário
+        this.codigo = codigo;
+    }
+    
+    public Fornecedor(String codigo, String razaoSocial, String nome, String logradouro, String bairro, String cidade, String estado, String cep, String tel, String email, String anotacoes) {
         this.codigo = codigo;
         this.razaoSocial = razaoSocial;
         this.nome = nome;
-        this.cep = cep;
         this.logradouro = logradouro;
-        this.numero = numero;
-        this.estado = estado;
-        this.cidade = cidade;
         this.bairro = bairro;
-        this.complemento = complemento;
+        this.cidade = cidade;
+        this.estado = estado;
+        this.cep = cep;
         this.tel = tel;
         this.email = email;
         this.anotacoes = anotacoes;
     }
     
     public String[] getArray() {
-        String[] aFornecedor = new String[13];
+        String[] aFornecedor = new String[11];
         aFornecedor[0] = this.codigo;
         aFornecedor[1] = this.razaoSocial;
         aFornecedor[2] = this.nome;
-        aFornecedor[3] = this.cep;
-        aFornecedor[4] = this.logradouro;
-        aFornecedor[5] = this.numero;
+        aFornecedor[3] = this.logradouro;
+        aFornecedor[4] = this.bairro;
+        aFornecedor[5] = this.cidade;
         aFornecedor[6] = this.estado;
-        aFornecedor[7] = this.cidade;
-        aFornecedor[8] = this.bairro;
-        aFornecedor[9] = this.complemento;
-        aFornecedor[10] = this.tel;
-        aFornecedor[11] = this.email;
-        aFornecedor[12] = this.anotacoes;
+        aFornecedor[7] = this.cep;
+        aFornecedor[8] = this.tel;
+        aFornecedor[9] = this.email;
+        aFornecedor[10] = this.anotacoes;
         
         return aFornecedor;
     }
 
-    public String getNumero() {
-        return numero;
-    }
-
-    public void setNumero(String numero) {
-        this.numero = numero;
-    }
-
-    public String getComplemento() {
-        return complemento;
-    }
-
-    public void setComplemento(String complemento) {
-        this.complemento = complemento;
-    }
-
-    
-    
     public String getCodigo() {
         return codigo;
     }
