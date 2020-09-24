@@ -30,7 +30,6 @@ public class TelaListagemFornecedor extends javax.swing.JInternalFrame {
      * Creates new form TelaListagemFermentacao
      */
     FornecedorTableModel tableModel = new FornecedorTableModel();
-    List<Fornecedor> fornecedores = new ArrayList<>();
     
     public TelaListagemFornecedor() {
         initComponents();
@@ -41,9 +40,9 @@ public class TelaListagemFornecedor extends javax.swing.JInternalFrame {
    }
     
     private void initFornecedores() {
-        fornecedores.add(new Fornecedor("1", "Aurora", "Auror", "13506-743", "Rua 9B", "1323", "São Paulo", "Rio Claro", "Vila Nova", "perto da Unesp", "(54)3455-00135", "sac@vinicolaaurora.com.br", "Link do nosso site: http://www.vinicolaaurora.com.br/br"));
-        fornecedores.add(new Fornecedor("2", "Aurora2", "Auror", "13506-743", "Rua 9B", "1323", "São Paulo", "Rio Claro", "Vila Nova", "perto da Unesp", "(54)3452-00146", "sac@vinicolaaurora.com.br", "Link do nosso site: http://www.vinicolaaurora.com.br/br"));
-        
+        tableModel.fornecedores.add(new Fornecedor("1", "Aurora", "Auror", "13506-743", "Rua 9B", "1323", "São Paulo", "Rio Claro", "Vila Nova", "perto da Unesp", "(54)3455-00135", "sac@vinicolaaurora.com.br", "Link do nosso site: http://www.vinicolaaurora.com.br/br"));
+        tableModel.fornecedores.add(new Fornecedor("2", "Aurora2", "Auror", "13506-743", "Rua 9B", "1323", "São Paulo", "Rio Claro", "Vila Nova", "perto da Unesp", "(54)3452-00146", "sac@vinicolaaurora.com.br", "Link do nosso site: http://www.vinicolaaurora.com.br/br"));
+
         // fornecedores = SerializeListagemFornecedor.load();
     }
     
@@ -77,10 +76,6 @@ public class TelaListagemFornecedor extends javax.swing.JInternalFrame {
                 }
             }
         );
-        
-        fornecedores.forEach(f -> {
-            tableModel.addRow(f);
-        });
     }
 
     public void setPosicaoCentro() {
@@ -284,6 +279,7 @@ public class TelaListagemFornecedor extends javax.swing.JInternalFrame {
             tcf.setVisible(true);
             configuraCamposCadastroFornecedor(tcf, indexSelectedRow);
             inativaCamposCadastroFornecedor(tcf);
+            tcf.jToggleButtonSalvar.setVisible(false);
         }     
     }//GEN-LAST:event_jButtonVisualizarActionPerformed
 
@@ -316,16 +312,17 @@ public class TelaListagemFornecedor extends javax.swing.JInternalFrame {
 
     private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
         int indexSelectedRow = jTableFornecedores.getSelectedRow();
+        String codigo = tableModel.getValueAt(indexSelectedRow, 0).toString();
         
         if (indexSelectedRow != -1) {
-            TelaCadastroFornecedor tcf = new TelaCadastroFornecedor();
+            TelaCadastroFornecedor tcf = new TelaCadastroFornecedor(tableModel.fornecedores, indexSelectedRow, codigo);
             tcf.setVisible(true);
             configuraCamposCadastroFornecedor(tcf, indexSelectedRow);
         }
     }//GEN-LAST:event_jButtonEditarActionPerformed
 
     private void formInternalFrameClosing(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameClosing
-        SerializeListagemFornecedor.save(fornecedores);
+        SerializeListagemFornecedor.save(tableModel.fornecedores);
     }//GEN-LAST:event_formInternalFrameClosing
 
 
