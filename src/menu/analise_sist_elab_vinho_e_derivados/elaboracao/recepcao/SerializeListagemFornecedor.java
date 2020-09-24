@@ -6,10 +6,15 @@
 package menu.analise_sist_elab_vinho_e_derivados.elaboracao.recepcao;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -34,18 +39,10 @@ public class SerializeListagemFornecedor {
         }
     }
     
-    public static List<Fornecedor> load() {
-        try {
-            FileInputStream fileIn = new FileInputStream(fileName);
-            ObjectInputStream in = new ObjectInputStream(fileIn);
-    /*
-            in.close();
-            fileIn.close();*/
-            return (List<Fornecedor>) in.readObject();
-        } catch(Exception ex) {
-            System.out.println("erro ao carregar arquivo");
-        }
-        
-        return null;
+    public static List<Fornecedor> load() throws Exception {
+        FileInputStream fileIn;
+        fileIn = new FileInputStream(fileName);
+        ObjectInputStream in = new ObjectInputStream(fileIn);
+        return (List<Fornecedor>) in.readObject();
     }
 }

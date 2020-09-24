@@ -44,10 +44,14 @@ public class TelaListagemFornecedor extends javax.swing.JInternalFrame {
    }
     
     private void initFornecedores() {
-        /*tableModel.fornecedores.add(new Fornecedor("1", "Aurora", "Auror", "13506-743", "Rua 9B", "1323", "São Paulo", "Rio Claro", "Vila Nova", "perto da Unesp", "(54)3455-00135", "sac@vinicolaaurora.com.br", "Link do nosso site: http://www.vinicolaaurora.com.br/br"));
-        tableModel.fornecedores.add(new Fornecedor("2", "Aurora2", "Auror", "13506-743", "Rua 9B", "1323", "São Paulo", "Rio Claro", "Vila Nova", "perto da Unesp", "(54)3452-00146", "sac@vinicolaaurora.com.br", "Link do nosso site: http://www.vinicolaaurora.com.br/br"));
-*/
-        tableModel.fornecedores = SerializeListagemFornecedor.load();
+        try {
+            /*tableModel.fornecedores.add(new Fornecedor("1", "Aurora", "Auror", "13506-743", "Rua 9B", "1323", "São Paulo", "Rio Claro", "Vila Nova", "perto da Unesp", "(54)3455-00135", "sac@vinicolaaurora.com.br", "Link do nosso site: http://www.vinicolaaurora.com.br/br"));
+            tableModel.fornecedores.add(new Fornecedor("2", "Aurora2", "Auror", "13506-743", "Rua 9B", "1323", "São Paulo", "Rio Claro", "Vila Nova", "perto da Unesp", "(54)3452-00146", "sac@vinicolaaurora.com.br", "Link do nosso site: http://www.vinicolaaurora.com.br/br"));
+            */
+            tableModel.fornecedores = SerializeListagemFornecedor.load();
+        } catch (Exception ex) {
+            tableModel.fornecedores = new ArrayList<>();
+        }
     }
     
     private void inativaBotoes() {
