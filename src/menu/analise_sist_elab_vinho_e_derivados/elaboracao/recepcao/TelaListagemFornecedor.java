@@ -15,6 +15,9 @@ import jExcel.JExcel;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import jxl.write.WriteException;
 
 /**
@@ -30,10 +33,46 @@ public class TelaListagemFornecedor extends javax.swing.JInternalFrame {
     
     public TelaListagemFornecedor() {
         initComponents();
-        jTableFornecedores.setModel(tableModel);
         
-        Fornecedor fornecedor = new Fornecedor("1", "Aurora", "Aurora", "Rua Olavo Bilac", "Cidade Alta", "Bento Gonçalves", "RS", "95700-000", "(54) 3455-200", "sac@vinicolaaurora.com.br", "Link do nosso site: http://www.vinicolaaurora.com.br/br");
-        tableModel.addRow(fornecedor);
+        initJTableFornecedores();
+        inativaBotoes(); 
+   }
+    
+    private void inativaBotoes() {
+        jButtonExportarTabela.setEnabled(false);
+        jButtonVisualizar.setEnabled(false);
+        jButtonEditar.setEnabled(false);
+        jButtonRemover.setEnabled(false);
+    }
+    
+    private void ativaBotoes() {
+        jButtonExportarTabela.setEnabled(true);
+        jButtonVisualizar.setEnabled(true);
+        jButtonEditar.setEnabled(true);
+        jButtonRemover.setEnabled(true);
+    }
+    
+    private void initJTableFornecedores() {
+        jTableFornecedores.setModel(tableModel);
+        jTableFornecedores.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        
+        jTableFornecedores.getSelectionModel().addListSelectionListener(
+            new ListSelectionListener() {
+                @Override
+                public void valueChanged(ListSelectionEvent e) {
+                    if (jTableFornecedores.getSelectedRow() == -1) {
+                        inativaBotoes();
+                    } else {
+                        ativaBotoes();
+                    }
+                }
+            }
+        );
+        
+        Fornecedor f1 = new Fornecedor("1", "Aurora", "Aurora", "Rua Olavo Bilac", "Cidade Alta", "Bento Gonçalves", "RS", "95700-000", "(54) 3455-200", "sac@vinicolaaurora.com.br", "Link do nosso site: http://www.vinicolaaurora.com.br/br");
+        Fornecedor f2 = new Fornecedor("2", "Aurora2", "Aurora2", "Rua Olavo Bilac", "Cidade Alta", "Bento Gonçalves", "RS", "95700-000", "(54) 3455-200", "sac@vinicolaaurora.com.br", "Link do nosso site: http://www.vinicolaaurora.com.br/br");
+        tableModel.addRow(f1);
+        tableModel.addRow(f2);
     }
 
     public void setPosicaoCentro() {
@@ -55,8 +94,8 @@ public class TelaListagemFornecedor extends javax.swing.JInternalFrame {
         jTextFieldCodigo = new javax.swing.JTextField();
         jButtonPesquisar = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        jButtonEditar = new javax.swing.JButton();
+        jButtonRemover = new javax.swing.JButton();
         jButtonVisualizar = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -82,11 +121,11 @@ public class TelaListagemFornecedor extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton3.setBackground(java.awt.Color.orange);
-        jButton3.setText("Editar");
+        jButtonEditar.setBackground(java.awt.Color.orange);
+        jButtonEditar.setText("Editar");
 
-        jButton4.setBackground(java.awt.Color.red);
-        jButton4.setText("Remover");
+        jButtonRemover.setBackground(java.awt.Color.red);
+        jButtonRemover.setText("Remover");
 
         jButtonVisualizar.setBackground(java.awt.Color.blue);
         jButtonVisualizar.setText("Visualizar");
@@ -134,9 +173,9 @@ public class TelaListagemFornecedor extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButtonVisualizar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton3)
+                        .addComponent(jButtonEditar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton4)
+                        .addComponent(jButtonRemover)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton2)
                         .addGap(1, 1, 1))
@@ -164,8 +203,8 @@ public class TelaListagemFornecedor extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4)
+                    .addComponent(jButtonEditar)
+                    .addComponent(jButtonRemover)
                     .addComponent(jButtonVisualizar)
                     .addComponent(jButtonExportarTabela))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -221,11 +260,11 @@ public class TelaListagemFornecedor extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButtonEditar;
     private javax.swing.JButton jButtonExportarTabela;
     private javax.swing.JButton jButtonPesquisar;
+    private javax.swing.JButton jButtonRemover;
     private javax.swing.JButton jButtonVisualizar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
