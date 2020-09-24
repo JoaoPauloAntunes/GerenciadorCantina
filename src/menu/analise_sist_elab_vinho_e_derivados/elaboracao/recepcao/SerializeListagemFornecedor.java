@@ -39,10 +39,26 @@ public class SerializeListagemFornecedor {
         }
     }
     
+<<<<<<< HEAD
     public static List<Fornecedor> load() throws Exception {
         FileInputStream fileIn;
         fileIn = new FileInputStream(fileName);
         ObjectInputStream in = new ObjectInputStream(fileIn);
         return (List<Fornecedor>) in.readObject();
+=======
+    public static List<Fornecedor> load() {
+        try {
+            FileInputStream fileIn = new FileInputStream(fileName);
+            ObjectInputStream in = new ObjectInputStream(fileIn);
+    
+            in.close();
+            fileIn.close();
+            return (List<Fornecedor>) in.readObject();
+        } catch(Exception ex) {
+            System.out.println("erro ao carregar arquivo");
+        }
+        
+        return null;
+>>>>>>> e9785eebce11c46cd622c03d9a14f15a266d11e3
     }
 }

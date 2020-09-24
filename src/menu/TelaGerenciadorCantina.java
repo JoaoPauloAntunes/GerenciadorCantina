@@ -7,6 +7,8 @@ package menu;
 
 import javax.swing.JOptionPane;
 import menu.analise_sist_elab_vinho_e_derivados.TelaAnaliseSistElabVinhoEDerivados;
+import menu.analise_sist_elab_vinho_e_derivados.elaboracao.fermentacao.Arquivo;
+import static menu.analise_sist_elab_vinho_e_derivados.elaboracao.fermentacao.TelaListagemFermentacao.jTable1;
 
 /**
  *
@@ -37,6 +39,11 @@ public class TelaGerenciadorCantina extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Gerenciador de Cantina");
         setBackground(java.awt.Color.white);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jToggleButton1.setText("<html>\n        Análise de Sistema <br />\n        de Produção da Uva\n</html>");
         jToggleButton1.setEnabled(false);
@@ -99,6 +106,10 @@ public class TelaGerenciadorCantina extends javax.swing.JFrame {
         // TODO add your handling code here:
         JOptionPane.showMessageDialog(null, "Indisponível!");
     }//GEN-LAST:event_jToggleButton1ActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments
