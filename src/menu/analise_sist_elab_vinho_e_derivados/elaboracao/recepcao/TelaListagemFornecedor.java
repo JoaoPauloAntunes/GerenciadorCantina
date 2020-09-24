@@ -17,8 +17,11 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
+import javax.swing.RowFilter;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 import jxl.write.WriteException;
 
 /**
@@ -115,6 +118,13 @@ public class TelaListagemFornecedor extends javax.swing.JInternalFrame {
         tcf.jTextAreaAnotacoes.setEnabled(false);
     }
     
+    private void filter(String query) {
+        TableRowSorter<FornecedorTableModel> tr = new TableRowSorter<FornecedorTableModel>(tableModel);
+        jTableFornecedores.setRowSorter(tr);
+        
+        tr.setRowFilter(RowFilter.regexFilter(query));
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -125,7 +135,7 @@ public class TelaListagemFornecedor extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jTextFieldCodigo = new javax.swing.JTextField();
+        jTextFieldPesquisarCodigo = new javax.swing.JTextField();
         jButtonPesquisar = new javax.swing.JButton();
         jButtonNovo = new javax.swing.JButton();
         jButtonEditar = new javax.swing.JButton();
@@ -160,6 +170,18 @@ public class TelaListagemFornecedor extends javax.swing.JInternalFrame {
         });
 
         jLabel1.setText("Código");
+
+        jTextFieldPesquisarCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextFieldPesquisarCodigoKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldPesquisarCodigoKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldPesquisarCodigoKeyTyped(evt);
+            }
+        });
 
         jButtonPesquisar.setBackground(java.awt.Color.blue);
         jButtonPesquisar.setText("Pesquisar");
@@ -244,7 +266,7 @@ public class TelaListagemFornecedor extends javax.swing.JInternalFrame {
                         .addGap(6, 6, 6)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldCodigo)
+                        .addComponent(jTextFieldPesquisarCodigo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonPesquisar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -260,7 +282,7 @@ public class TelaListagemFornecedor extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextFieldCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldPesquisarCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonPesquisar)
                     .addComponent(jButton7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -316,7 +338,7 @@ public class TelaListagemFornecedor extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButtonExportarTabelaActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        jTextFieldCodigo.setText("");
+        jTextFieldPesquisarCodigo.setText("");
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
@@ -343,6 +365,20 @@ public class TelaListagemFornecedor extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jButtonRemoverActionPerformed
 
+    private void jTextFieldPesquisarCodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldPesquisarCodigoKeyPressed
+        
+    }//GEN-LAST:event_jTextFieldPesquisarCodigoKeyPressed
+
+    private void jTextFieldPesquisarCodigoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldPesquisarCodigoKeyTyped
+        
+    }//GEN-LAST:event_jTextFieldPesquisarCodigoKeyTyped
+
+    private void jTextFieldPesquisarCodigoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldPesquisarCodigoKeyReleased
+        String query = jTextFieldPesquisarCodigo.getText().toLowerCase();
+        
+        filter(query);
+    }//GEN-LAST:event_jTextFieldPesquisarCodigoKeyReleased
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton7;
@@ -355,6 +391,6 @@ public class TelaListagemFornecedor extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableFornecedores;
-    private javax.swing.JTextField jTextFieldCodigo;
+    private javax.swing.JTextField jTextFieldPesquisarCodigo;
     // End of variables declaration//GEN-END:variables
 }
