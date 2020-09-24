@@ -183,6 +183,11 @@ public class TelaListagemFornecedor extends javax.swing.JInternalFrame {
 
         jButtonRemover.setBackground(java.awt.Color.red);
         jButtonRemover.setText("Remover");
+        jButtonRemover.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRemoverActionPerformed(evt);
+            }
+        });
 
         jButtonVisualizar.setBackground(java.awt.Color.blue);
         jButtonVisualizar.setText("Visualizar");
@@ -225,7 +230,7 @@ public class TelaListagemFornecedor extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap(489, Short.MAX_VALUE)
                         .addComponent(jButtonExportarTabela)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButtonVisualizar)
@@ -244,9 +249,11 @@ public class TelaListagemFornecedor extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonPesquisar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton7)))
+                        .addComponent(jButton7))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 886, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 910, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -264,8 +271,9 @@ public class TelaListagemFornecedor extends javax.swing.JInternalFrame {
                     .addComponent(jButtonRemover)
                     .addComponent(jButtonVisualizar)
                     .addComponent(jButtonExportarTabela))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 548, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 524, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         setBounds(0, 0, 921, 664);
@@ -323,6 +331,10 @@ public class TelaListagemFornecedor extends javax.swing.JInternalFrame {
     private void formInternalFrameClosing(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameClosing
         SerializeListagemFornecedor.save(tableModel.fornecedores);
     }//GEN-LAST:event_formInternalFrameClosing
+
+    private void jButtonRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoverActionPerformed
+        
+    }//GEN-LAST:event_jButtonRemoverActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

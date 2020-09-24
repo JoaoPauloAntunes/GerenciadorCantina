@@ -7,13 +7,10 @@ package menu.analise_sist_elab_vinho_e_derivados.elaboracao.recepcao;
 
 import br.com.parg.viacep.ViaCEP;
 import br.com.parg.viacep.ViaCEPException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.table.TableModel;
 import menu.TelaGerenciadorCantina;
 import util.FormSanitize;
 
