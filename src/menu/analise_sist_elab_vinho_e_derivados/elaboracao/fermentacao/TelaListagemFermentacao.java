@@ -385,16 +385,11 @@ public class TelaListagemFermentacao extends javax.swing.JInternalFrame {
         Arquivo arq = new Arquivo();
         arq.auxLeitura(jTable1);
         FermentacaoTableModel tableModel = new FermentacaoTableModel();
-        //        DefaultTableModel dtmDados = (DefaultTableModel)jTable1.getModel();
+
         JExcel jExcel = new JExcel();
         String[] columnsName = tableModel.columns;
-
-//       for (String[] strings : arq.rows) {
-//       System.out.println(Arrays.toString(strings));
-
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDateTime now = LocalDateTime.now();
-
         try {
             jExcel.export(dtf.format(now) + "_tabela_fermentacao", columnsName, arq.rows);
         } catch (WriteException ex) {
