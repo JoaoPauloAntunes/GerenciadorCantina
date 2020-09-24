@@ -340,6 +340,8 @@ public class TelaAnaliseSistElabVinhoEDerivados extends javax.swing.JFrame {
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         // TODO add your handling code here:
+        TelaListagemFermentacao telaListagemFermentacao = new TelaListagemFermentacao();
+        if(telaListagemFermentacao.isVisible())
         Arquivo.salvar(jTable1);
     }//GEN-LAST:event_formWindowClosing
 

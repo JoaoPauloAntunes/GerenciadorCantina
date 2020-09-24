@@ -109,7 +109,6 @@ public class TelaGerenciadorCantina extends javax.swing.JFrame {
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         // TODO add your handling code here:
-        Arquivo.salvar(jTable1);
     }//GEN-LAST:event_formWindowClosing
 
     /**

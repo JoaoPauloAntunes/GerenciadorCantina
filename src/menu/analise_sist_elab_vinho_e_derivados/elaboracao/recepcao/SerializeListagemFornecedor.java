@@ -38,9 +38,9 @@ public class SerializeListagemFornecedor {
         try {
             FileInputStream fileIn = new FileInputStream(fileName);
             ObjectInputStream in = new ObjectInputStream(fileIn);
-    /*
+    
             in.close();
-            fileIn.close();*/
+            fileIn.close();
             return (List<Fornecedor>) in.readObject();
         } catch(Exception ex) {
             System.out.println("erro ao carregar arquivo");
