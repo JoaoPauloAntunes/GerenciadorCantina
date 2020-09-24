@@ -15,6 +15,7 @@ import jExcel.JExcel;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -309,8 +310,10 @@ public class TelaListagemFornecedor extends javax.swing.JInternalFrame {
         LocalDateTime now = LocalDateTime.now();
         try {
             jExcel.export(dtf.format(now) + "_tabela_fornecedores", columnsName, rows);
+            
+            JOptionPane.showMessageDialog(null, "Tabela exportada!");
         } catch (WriteException | IOException ex) {
-            Logger.getLogger(TelaListagemFornecedor.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Ocorreu um erro e a tabela não foi exportada!");
         }
     }//GEN-LAST:event_jButtonExportarTabelaActionPerformed
 
