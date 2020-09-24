@@ -7,11 +7,13 @@ package menu.analise_sist_elab_vinho_e_derivados.elaboracao.recepcao;
 
 import br.com.parg.viacep.ViaCEP;
 import br.com.parg.viacep.ViaCEPException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.table.TableModel;
 import menu.TelaGerenciadorCantina;
 import util.FormSanitize;
 
@@ -21,28 +23,30 @@ import util.FormSanitize;
  */
 public class TelaCadastroFornecedor extends javax.swing.JFrame {
     protected final Map<String, String> estados;
-    private List<Fornecedor> fornecedores;
+    FornecedorTableModel tableModel = null;
     private int indexSelectedRow = -1;
-    private String codigo = null;
+    private boolean editar = false;
     
     
-    public TelaCadastroFornecedor() {
+    public TelaCadastroFornecedor(FornecedorTableModel tableModel) {
         initComponents();
         
         estados = new HashMap<>();
         initEstados(estados);
         initJComboBoxEstado(estados);
+        this.tableModel = tableModel;
     }
     
-    public TelaCadastroFornecedor(List<Fornecedor> fornecedores, int indexSelectedRow, String codigo) {
+    public TelaCadastroFornecedor(FornecedorTableModel tableModel, int indexSelectedRow) {
         initComponents();
         
         estados = new HashMap<>();
         initEstados(estados);
         initJComboBoxEstado(estados);
-        this.fornecedores = fornecedores;
+        this.tableModel = tableModel;
         this.indexSelectedRow = indexSelectedRow;
-        this.codigo = codigo;
+        
+        editar = true;
     }
 
     private void initJComboBoxEstado(Map<String, String> estados) {
@@ -345,15 +349,14 @@ public class TelaCadastroFornecedor extends javax.swing.JFrame {
     }//GEN-LAST:event_jFormattedTextFieldCepFocusLost
 
     private void jToggleButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonSalvarActionPerformed
-        for(int i = 0; i <  this.fornecedores.size(); i++) {
-            if (this.fornecedores.get(i).getCodigo().equals(this.codigo)) {
-                this.fornecedores.remove(i);
-                break;
-            }
+        if (editar && tableModel.fornecedores != null && this.indexSelectedRow >= 0 && this.indexSelectedRow < this.tableModel.fornecedores.size()) {
+            this.tableModel.fornecedores.remove(indexSelectedRow);
         }
         
-        this.fornecedores.add(new Fornecedor(jTextFieldCodigo.getText(), jTextFieldRazaoSocial.getText(), jTextFieldNome.getText(), jFormattedTextFieldCep.getText(), jTextFieldLogradouro.getText(), jFormattedTextFieldNumero.getText(), jComboBoxEstado.getSelectedItem().toString(), jTextFieldCidade.getText(), jTextFieldBairro.getText(), jTextFieldComplemento.getText(), jFormattedTextFieldTel.getText(), jTextFieldEmail.getText(), jTextAreaAnotacoes.getText()));
-        SerializeListagemFornecedor.save(this.fornecedores);
+        this.tableModel.fornecedores.add(new Fornecedor(jTextFieldCodigo.getText(), jTextFieldRazaoSocial.getText(), jTextFieldNome.getText(), jFormattedTextFieldCep.getText(), jTextFieldLogradouro.getText(), jFormattedTextFieldNumero.getText(), jComboBoxEstado.getSelectedItem().toString(), jTextFieldCidade.getText(), jTextFieldBairro.getText(), jTextFieldComplemento.getText(), jFormattedTextFieldTel.getText(), jTextFieldEmail.getText(), jTextAreaAnotacoes.getText()));
+        SerializeListagemFornecedor.save(tableModel.fornecedores);
+        tableModel.fireTableDataChanged();
+        
         setVisible(false);
     }//GEN-LAST:event_jToggleButtonSalvarActionPerformed
 

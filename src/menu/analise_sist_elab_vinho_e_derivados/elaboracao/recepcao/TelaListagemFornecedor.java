@@ -40,10 +40,10 @@ public class TelaListagemFornecedor extends javax.swing.JInternalFrame {
    }
     
     private void initFornecedores() {
-        tableModel.fornecedores.add(new Fornecedor("1", "Aurora", "Auror", "13506-743", "Rua 9B", "1323", "São Paulo", "Rio Claro", "Vila Nova", "perto da Unesp", "(54)3455-00135", "sac@vinicolaaurora.com.br", "Link do nosso site: http://www.vinicolaaurora.com.br/br"));
+        /*tableModel.fornecedores.add(new Fornecedor("1", "Aurora", "Auror", "13506-743", "Rua 9B", "1323", "São Paulo", "Rio Claro", "Vila Nova", "perto da Unesp", "(54)3455-00135", "sac@vinicolaaurora.com.br", "Link do nosso site: http://www.vinicolaaurora.com.br/br"));
         tableModel.fornecedores.add(new Fornecedor("2", "Aurora2", "Auror", "13506-743", "Rua 9B", "1323", "São Paulo", "Rio Claro", "Vila Nova", "perto da Unesp", "(54)3452-00146", "sac@vinicolaaurora.com.br", "Link do nosso site: http://www.vinicolaaurora.com.br/br"));
-
-        // fornecedores = SerializeListagemFornecedor.load();
+*/
+        tableModel.fornecedores = SerializeListagemFornecedor.load();
     }
     
     private void inativaBotoes() {
@@ -275,7 +275,7 @@ public class TelaListagemFornecedor extends javax.swing.JInternalFrame {
         int indexSelectedRow = jTableFornecedores.getSelectedRow();
         
         if (indexSelectedRow != -1) {
-            TelaCadastroFornecedor tcf = new TelaCadastroFornecedor();
+            TelaCadastroFornecedor tcf = new TelaCadastroFornecedor(tableModel);
             tcf.setVisible(true);
             configuraCamposCadastroFornecedor(tcf, indexSelectedRow);
             inativaCamposCadastroFornecedor(tcf);
@@ -284,7 +284,7 @@ public class TelaListagemFornecedor extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButtonVisualizarActionPerformed
 
     private void jButtonNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovoActionPerformed
-        TelaCadastroFornecedor tcf = new TelaCadastroFornecedor();
+        TelaCadastroFornecedor tcf = new TelaCadastroFornecedor(tableModel);
         tcf.setVisible(true);
     }//GEN-LAST:event_jButtonNovoActionPerformed
 
@@ -312,10 +312,9 @@ public class TelaListagemFornecedor extends javax.swing.JInternalFrame {
 
     private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
         int indexSelectedRow = jTableFornecedores.getSelectedRow();
-        String codigo = tableModel.getValueAt(indexSelectedRow, 0).toString();
         
         if (indexSelectedRow != -1) {
-            TelaCadastroFornecedor tcf = new TelaCadastroFornecedor(tableModel.fornecedores, indexSelectedRow, codigo);
+            TelaCadastroFornecedor tcf = new TelaCadastroFornecedor(tableModel, indexSelectedRow);
             tcf.setVisible(true);
             configuraCamposCadastroFornecedor(tcf, indexSelectedRow);
         }
