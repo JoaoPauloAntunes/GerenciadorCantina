@@ -62,6 +62,7 @@ public class VisualizaCadastroFermentacao extends javax.swing.JFrame {
 
         jLabel6.setText("Descrição");
 
+        jButton1.setBackground(java.awt.Color.green);
         jButton1.setText("Habilitar edicao");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -69,6 +70,7 @@ public class VisualizaCadastroFermentacao extends javax.swing.JFrame {
             }
         });
 
+        btSalvar.setBackground(java.awt.Color.blue);
         btSalvar.setText("Salvar");
         btSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -76,6 +78,7 @@ public class VisualizaCadastroFermentacao extends javax.swing.JFrame {
             }
         });
 
+        btCancelar.setBackground(java.awt.Color.red);
         btCancelar.setText("Cancelar");
         btCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -145,10 +148,11 @@ public class VisualizaCadastroFermentacao extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jtOrigem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
-                .addGroup(jPanelGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                .addGroup(jPanelGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btSalvar)
-                    .addComponent(btCancelar))
+                    .addGroup(jPanelGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton1)
+                        .addComponent(btCancelar)))
                 .addContainerGap())
         );
 
