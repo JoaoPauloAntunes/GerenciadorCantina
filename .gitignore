@@ -7,3 +7,5 @@
 /tests/Date/build/
 /*.xls
 /tests/JavaApplication14/build/
+/tests/SerializeObject/nbproject/private/
+/tests/SerializeObject/build/
