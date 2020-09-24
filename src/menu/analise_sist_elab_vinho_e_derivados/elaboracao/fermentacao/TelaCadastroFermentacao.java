@@ -18,6 +18,12 @@ public class TelaCadastroFermentacao extends javax.swing.JFrame {
     
     public TelaCadastroFermentacao() {
         initComponents();
+        jTabbedPane1.setEnabledAt(1,false);
+        jTabbedPane1.setEnabledAt(2,false);
+        jTabbedPane1.setEnabledAt(3,false);
+        jTabbedPane1.setEnabledAt(4,false);
+        jTabbedPane1.setEnabledAt(5,false);
+        jTabbedPane1.setEnabledAt(6,false);
         
     }
 

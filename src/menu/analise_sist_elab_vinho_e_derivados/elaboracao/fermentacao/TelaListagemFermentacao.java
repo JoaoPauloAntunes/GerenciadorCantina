@@ -5,8 +5,20 @@
  */
 package menu.analise_sist_elab_vinho_e_derivados.elaboracao.fermentacao;
 
+import jExcel.JExcel;
 import java.awt.Dimension;
+import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
+import jxl.write.WriteException;
+import menu.analise_sist_elab_vinho_e_derivados.elaboracao.recepcao.Fornecedor;
+import menu.analise_sist_elab_vinho_e_derivados.elaboracao.recepcao.TelaListagemFornecedor;
 
 
 public class TelaListagemFermentacao extends javax.swing.JInternalFrame {
@@ -44,6 +56,7 @@ public class TelaListagemFermentacao extends javax.swing.JInternalFrame {
         jTable1 = new javax.swing.JTable();
         jButtonVisualizar = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -70,6 +83,7 @@ public class TelaListagemFermentacao extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Código");
 
+        btPesquisa.setBackground(java.awt.Color.blue);
         btPesquisa.setText("Pesquisar");
         btPesquisa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -77,6 +91,7 @@ public class TelaListagemFermentacao extends javax.swing.JInternalFrame {
             }
         });
 
+        btNovo.setBackground(java.awt.Color.blue);
         btNovo.setText("Novo");
         btNovo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -84,6 +99,7 @@ public class TelaListagemFermentacao extends javax.swing.JInternalFrame {
             }
         });
 
+        jButton3.setBackground(java.awt.Color.red);
         jButton3.setText("Editar");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -91,6 +107,7 @@ public class TelaListagemFermentacao extends javax.swing.JInternalFrame {
             }
         });
 
+        btRemove.setBackground(java.awt.Color.green);
         btRemove.setText("Remover");
         btRemove.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -117,6 +134,7 @@ public class TelaListagemFermentacao extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
+        jButtonVisualizar.setBackground(java.awt.Color.orange);
         jButtonVisualizar.setText("Visualizar");
         jButtonVisualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -124,10 +142,19 @@ public class TelaListagemFermentacao extends javax.swing.JInternalFrame {
             }
         });
 
+        jButton7.setBackground(java.awt.Color.red);
         jButton7.setText("Limpar");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton7ActionPerformed(evt);
+            }
+        });
+
+        jButton1.setBackground(new java.awt.Color(0, 100, 0));
+        jButton1.setText("Exportar tabela");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -144,10 +171,12 @@ public class TelaListagemFermentacao extends javax.swing.JInternalFrame {
                 .addComponent(btPesquisa)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton7)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btNovo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButtonVisualizar)
@@ -171,7 +200,8 @@ public class TelaListagemFermentacao extends javax.swing.JInternalFrame {
                     .addComponent(btNovo)
                     .addComponent(jButton3)
                     .addComponent(btRemove)
-                    .addComponent(jButtonVisualizar))
+                    .addComponent(jButtonVisualizar)
+                    .addComponent(jButton1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(7, 7, 7))
@@ -192,8 +222,6 @@ public class TelaListagemFermentacao extends javax.swing.JInternalFrame {
 
     private void formInternalFrameClosing(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameClosing
         Arquivo.salvar(jTable1);
-        
-        
     }//GEN-LAST:event_formInternalFrameClosing
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -217,11 +245,19 @@ public class TelaListagemFermentacao extends javax.swing.JInternalFrame {
         jtPesquisa.setText("");
     }//GEN-LAST:event_jButton7ActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // exportar tabela
+        Arquivo.salvar(jTable1);
+        exportaTabela();
+               
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btNovo;
     private javax.swing.JButton btPesquisa;
     private javax.swing.JButton btRemove;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButtonVisualizar;
@@ -344,5 +380,22 @@ public class TelaListagemFermentacao extends javax.swing.JInternalFrame {
         
         
     }
-    
+    private void exportaTabela()
+    {
+        Arquivo arq = new Arquivo();
+        arq.auxLeitura(jTable1);
+        FermentacaoTableModel tableModel = new FermentacaoTableModel();
+
+        JExcel jExcel = new JExcel();
+        String[] columnsName = tableModel.columns;
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDateTime now = LocalDateTime.now();
+        try {
+            jExcel.export(dtf.format(now) + "_tabela_fermentacao", columnsName, arq.rows);
+        } catch (WriteException ex) {
+            Logger.getLogger(TelaListagemFermentacao.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(TelaListagemFermentacao.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+    }
 }

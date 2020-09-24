@@ -6,7 +6,9 @@
 package menu.analise_sist_elab_vinho_e_derivados;
 
 import javax.swing.JOptionPane;
+import menu.analise_sist_elab_vinho_e_derivados.elaboracao.fermentacao.Arquivo;
 import menu.analise_sist_elab_vinho_e_derivados.elaboracao.fermentacao.TelaListagemFermentacao;
+import static menu.analise_sist_elab_vinho_e_derivados.elaboracao.fermentacao.TelaListagemFermentacao.jTable1;
 import menu.analise_sist_elab_vinho_e_derivados.elaboracao.recepcao.TelaListagemFornecedor;
 
 /**
@@ -60,6 +62,11 @@ public class TelaAnaliseSistElabVinhoEDerivados extends javax.swing.JFrame {
         setTitle("Análise de Sistema de Elaboração de Vinho e Derivados");
         setExtendedState(6);
         setPreferredSize(new java.awt.Dimension(1024, 760));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jToggleButton4.setText("Tarefa");
         jToggleButton4.setEnabled(false);
@@ -330,6 +337,13 @@ public class TelaAnaliseSistElabVinhoEDerivados extends javax.swing.JFrame {
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         JOptionPane.showMessageDialog(null, "Indisponível!");        // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+        TelaListagemFermentacao telaListagemFermentacao = new TelaListagemFermentacao();
+        if(telaListagemFermentacao.isVisible())
+        Arquivo.salvar(jTable1);
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments
