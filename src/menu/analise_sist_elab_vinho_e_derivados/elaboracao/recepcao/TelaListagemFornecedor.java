@@ -48,14 +48,12 @@ public class TelaListagemFornecedor extends javax.swing.JInternalFrame {
     }
     
     private void inativaBotoes() {
-        jButtonExportarTabela.setEnabled(false);
         jButtonVisualizar.setEnabled(false);
         jButtonEditar.setEnabled(false);
         jButtonRemover.setEnabled(false);
     }
     
     private void ativaBotoes() {
-        jButtonExportarTabela.setEnabled(true);
         jButtonVisualizar.setEnabled(true);
         jButtonEditar.setEnabled(true);
         jButtonRemover.setEnabled(true);
