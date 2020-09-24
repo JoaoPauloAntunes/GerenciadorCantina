@@ -5,11 +5,13 @@
  */
 package menu.analise_sist_elab_vinho_e_derivados.elaboracao.recepcao;
 
+import java.io.Serializable;
+
 /**
  *
  * @author joao
  */
-public class Fornecedor {
+public class Fornecedor implements Serializable {
     private String codigo;
     private String razaoSocial;
     private String nome;
@@ -21,10 +23,6 @@ public class Fornecedor {
     private String tel;
     private String email;
     private String anotacoes;
-    
-    public Fornecedor(String codigo) { // temporário
-        this.codigo = codigo;
-    }
     
     public Fornecedor(String codigo, String razaoSocial, String nome, String logradouro, String bairro, String cidade, String estado, String cep, String tel, String email, String anotacoes) {
         this.codigo = codigo;
