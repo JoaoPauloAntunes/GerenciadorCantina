@@ -22,8 +22,9 @@ import util.FormSanitize;
 public class TelaCadastroFornecedor extends javax.swing.JFrame {
     protected final Map<String, String> estados;
     private List<Fornecedor> fornecedores;
-    private int indexSelectedRow;
-    private String codigo;
+    private int indexSelectedRow = -1;
+    private String codigo = null;
+    
     
     public TelaCadastroFornecedor() {
         initComponents();
@@ -344,7 +345,16 @@ public class TelaCadastroFornecedor extends javax.swing.JFrame {
     }//GEN-LAST:event_jFormattedTextFieldCepFocusLost
 
     private void jToggleButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonSalvarActionPerformed
+        for(int i = 0; i <  this.fornecedores.size(); i++) {
+            if (this.fornecedores.get(i).getCodigo().equals(this.codigo)) {
+                this.fornecedores.remove(i);
+                break;
+            }
+        }
         
+        this.fornecedores.add(new Fornecedor(jTextFieldCodigo.getText(), jTextFieldRazaoSocial.getText(), jTextFieldNome.getText(), jFormattedTextFieldCep.getText(), jTextFieldLogradouro.getText(), jFormattedTextFieldNumero.getText(), jComboBoxEstado.getSelectedItem().toString(), jTextFieldCidade.getText(), jTextFieldBairro.getText(), jTextFieldComplemento.getText(), jFormattedTextFieldTel.getText(), jTextFieldEmail.getText(), jTextAreaAnotacoes.getText()));
+        SerializeListagemFornecedor.save(this.fornecedores);
+        setVisible(false);
     }//GEN-LAST:event_jToggleButtonSalvarActionPerformed
 
     private void jToggleButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonCancelarActionPerformed
