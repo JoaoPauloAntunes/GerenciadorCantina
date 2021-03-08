@@ -89,6 +89,7 @@ public class TelaAnaliseSistElabVinhoEDerivados extends javax.swing.JFrame {
         jMenu11.setText("Recepção");
 
         jMenuItem2.setText("ID Geral de Uva");
+        jMenuItem2.setEnabled(false);
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem2ActionPerformed(evt);
